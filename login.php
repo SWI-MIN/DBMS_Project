@@ -26,7 +26,7 @@
             $result = $conn->query($sql);
             $number = $result->fetch();//mysqli_num_rows($result);
             if ($number) {
-                echo '<script>window.location="welcome.html";</script>';
+                echo '<script>window.location="首頁&課表.html";</script>';
             } else {
                 echo '<script>alert("id OR password 錯誤!!");history.go(-1);</script>';
             }

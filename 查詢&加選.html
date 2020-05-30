@@ -32,7 +32,7 @@
 <body>
     <!-- 我是導覽列 -->
     <nav class="navbar navbar-expand-md navbar-light bg-light p-1 fixed-top">
-      <a class="navbar-brand ml-4" href="./DBMS_Project_課表.html" style="font-size: 40px;">學號</a>
+      <a class="navbar-brand ml-4" href="./首頁&課表.html" style="font-size: 40px;">學號</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
           aria-expanded="false" aria-controls="myNavbar">
           <span class="navbar-toggler-icon"></span>
@@ -41,67 +41,21 @@
       <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center">
               <li class="nav-item p-1" style="margin: 3px;">
-                  <a href="./DBMS_Project_查詢&加選.html" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">查詢與加選</a>
+                  <a href="./查詢&加選.html" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">查詢與加選</a>
               </li>
               <li class="nav-item p-1" style="margin: 3px;">
-                  <a href="./DBMS_Project_查詢&退選.html" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">當前課程與退選</a>
+                  <a href="./查詢&退選.html" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">當前課程與退選</a>
               </li>
                 
             </ul>
             <hr>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-2">
-                <li class="nav-item mx-auto d-none" style="margin: 3px;" id="user">
-                    <a class="nav-link" href="#" style="font-size: 17px;" id="yourname">
-                        <!-- <i class="fa fa-user-circle" aria-hidden="true"></i> -->
-                    </a>
-                </li>
-                <li class="nav-item mx-auto d-none" style="margin: 3px;" id="logout">
-                    <a class="nav-link" href="#" style="font-size: 17px;">
-                        <!-- <i class="fa fa-user-circle" aria-hidden="true"></i> -->
-                        Log out
-                    </a>
-                </li>
-                <li class="nav-item mx-auto" style="margin: 3px;" id="login">
-                    <a class="nav-link" href="#" style="font-size: 17px;" data-toggle="modal" data-target="#ModalLogin">
-                        <i class="fa fa-user-circle" aria-hidden="true"></i>
-                        Log in
-                    </a>
-                </li>
-                
+              <form name="login" action="logout.php" method="post">
+                 <input action type="submit" name="logout" value="logout">
+              </form>
             </ul>
         </div>
     </nav>
-    <!-- modal -->
-    <div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" style="font-family: Microsoft JhengHei, Arial;">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content modal-login">
-                <div class="modal-body">
-                    <form action="" method="POST" class="box">
-                        <h1>LOGIN</h1>
-                        <input type="text" id="l_username" placeholder="Username">
-                        <input type="password" id="l_pwd" placeholder="Password">
-                        <input type="submit" id="l_login" value="Login">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- modal -->
-    <div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content modal-login">
-                <div class="modal-body">
-                    <form action="" method="POST" class="box">
-                        <h1>LOGIN</h1>
-                        <input type="text" name="username" placeholder="Username">
-                        <input type="password" name="pwd" placeholder="Password">
-                        <input type="submit" name="login" value="Login">
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     
     <!-- /========================================我是分隔線======================================== -->
 
