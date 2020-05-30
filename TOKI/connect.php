@@ -2,9 +2,6 @@
 <html lang="en">
 <?php 
 session_start();
-if(isset($_SESSION['userData'])){
-    // exit();
-}
 ?>
 
 <head>
@@ -57,7 +54,8 @@ if(isset($_SESSION['userData'])){
             </ul>
             <hr>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-2">
-            <!-- <li class="current-menu-item"><a href="connect.php">註冊</a></li> -->
+            <li class="current-menu-item"><a href=""><?php echo ($_SESSION['userData']); ?></a></li>
+            <li class="current-menu-item"><a href="index.php">登出</a></li>
                 
             </ul>
         </div>
@@ -67,7 +65,7 @@ if(isset($_SESSION['userData'])){
     <div class="container-fluid">
         <div class="row">
             <main role="main" class="col-md- ml-sm-auto col-lg-12" style="padding-top: 100px;padding-bottom:40px;padding-left: 5%;padding-right: 5%;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                <h1 class="text-center" style="padding: 0px 0px 0px 0px;">選課系統</h1>
+                <h1 class="text-center" style="padding: 0px 0px 0px 0px;">課表</h1>
                 <style type="text/css">
                     #contentTable{
                         table-layout:fixed; /* bootstrap-table設定colmuns中某列的寬度無效時，需要給整個表設定css屬性 */
@@ -78,70 +76,19 @@ if(isset($_SESSION['userData'])){
                         font-family: Microsoft JhengHei, Arial;
                     }
                 </style>
-                <div class="container">
-                    <form method="post" class="login" >
-                      
-                            <label for="Account" >學號:</label>
-                            <input type="text" name="loginaccount" class="form-control" placeholder="輸入學號" id="Account">
-                        
-                            <label for="Password" >密碼:</label>
-                            <input type="Password" name="loginpassword" class="form-control" placeholder="輸入密碼" id="Password">
-                            <br>
-                        <button type="submit" class="btn btn-outline-primary">確認</button>
-                    </form>
-                    <br>
-                    <hr>
-                </div>
                 <br>
-                <?php
-
-                $la = "";
-                $lp = "";
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $la = test_input($_POST["loginaccount"]);
-                    $lp = test_input($_POST["loginpassword"]);
-                }
-
-                function test_input($data) {
-                    // $data = trim($data);
-                    // $data = stripslashes($data);
-                    // $data = htmlspecialchars($data);
-                    return $data;
-                }
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                include 'function1.php';
-                $conn = opDB();
-                $sqlre = "SELECT stuid,pwd FROM students";
-                $acc = "";
-                $pas = "";
-                $check = '0';
-                if($result = mysqli_query($conn, $sqlre)){
-                    if (mysqli_num_rows($result) > 0) {       
-                      while($row = mysqli_fetch_assoc($result)){
-                        if($row["stuid"] == $la && $row["pwd"] == $lp){
-                            $acc = $row["stuid"];
-                            $pas = $row["pwd"];
-                            $userData = $row["stuid"];
-                            $_SESSION['userData']=$userData;
-                            $check = '1';
-                        }
-                      }
-                    }     
-                }
-                if( $check == '1'){
-                    echo "<script type='text/javascript'>";
-                    echo "window.location.href='connect.php'";
-                    echo "</script>"; 
-                    }else{
-                        echo "<script type='text/javascript'>";
-                        echo "alert('您輸入的帳號或密碼有錯');";
-                        echo "</script>"; 
-                    }
-                }
-                ?>
+                
             </main>
         </div>
     </div>
+    <h1>12345678
+    </h1>
+    <?php
+        include 'function1.php'; 
+        $conn = opDB();
+        echo ($_SESSION['userData']);
+        CloseCon($conn);            
+    ?>
 
 
 </body>
