@@ -31,7 +31,7 @@
 <body>
     <!-- 我是導覽列 -->
     <nav class="navbar navbar-expand-md navbar-light bg-light p-1 fixed-top">
-      <a class="navbar-brand ml-4" href="./login.html" style="font-size: 40px;">學號</a>
+      <a class="navbar-brand ml-4" href="./login.html" style="font-size: 30px;">學號</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
           aria-expanded="false" aria-controls="myNavbar">
           <span class="navbar-toggler-icon"></span>
@@ -48,7 +48,7 @@
                 
             </ul>
             <hr>
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-2">
+            <!-- <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-2">
                 
                 <li class="nav-item mx-auto" style="margin: 3px;" id="login" name="login">
                     <a class="nav-link" href="#" style="font-size: 17px;" data-toggle="modal" data-target="#ModalLogin">
@@ -57,11 +57,11 @@
                     </a>
                 </li>
                 
-            </ul>
+            </ul> -->
         </div>
     </nav>
     <!-- modal -->
-    <div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" style="font-family: Microsoft JhengHei, Arial;">
+    <!-- <div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="Login" aria-hidden="true" style="font-family: Microsoft JhengHei, Arial;">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modal-login">
                 <div class="modal-body">
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     
     
     
@@ -83,7 +83,19 @@
     <div class="container-fluid">
         <div class="row">
             <main role="main" class="col-md- ml-sm-auto col-lg-12" style="padding-top: 100px;padding-bottom:40px;padding-left: 5%;padding-right: 5%;"><div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;"><div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div></div><div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;"><div style="position:absolute;width:200%;height:200%;left:0; top:0"></div></div></div>
-                
+                <div class="container">
+                    <form action="login.php" method="post" class="login" >
+                        <label for="Account" >學號:</label>
+                        <input type="text" name="id" class="form-control" placeholder="輸入學號">
+                        <br>
+                        <label for="Password" >密碼:</label>
+                        <input type="Password" name="password" class="form-control" placeholder="輸入密碼" >
+                        <br>
+                        <button type="submit" name="submit" id="l_login" value="Login" class="btn btn-outline-primary">確認</button>
+                    </form>
+                    <br>
+                    <hr>
+                </div>
             </main>
         </div>
     </div>
