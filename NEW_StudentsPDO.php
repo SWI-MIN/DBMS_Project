@@ -14,11 +14,8 @@
     $stufloor = $_POST['stufloor'];                                   
     $stuclass = $_POST['stuclass'];
 
-    $conn = new mysqli($host, $user, $pass, $dbName);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
+    $conn = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+  
 
     // if ($stuid == '' || $pwd == '' || $stuname == '' || $studepart == '' || $stufloor == '' || $stuclass == ''){
     //     echo '<script>alert("通通不能為空!!");history.go(-1);</script>';
@@ -36,16 +33,19 @@
 
     $subject= "SELECT * FROM departcourse WHERE coursedepart = '$_POST[studepart]' 
         AND	coursefloor = '$_POST[stufloor]' AND courseclass = '$_POST[stuclass]' AND needed = 'M'";
+   
+    $result = $conn->query($subject);    
+    $number = $result->fetch();
 
-    $result = mysqli_query($conn,$subject);
-    $number = mysqli_fetch_assoc($result);
-    if ($number["coursedepart"] == $studepart && $number["coursefloor"] ==  $stufloor 
-        && $number["courseclass"] ==  $stuclass) {
-        echo $number["courseid"];
+    if ($number) {
         echo 'match';
     } else {
         echo 'not match';
     }
+
+
+
+
 
     // mysql_close($conn);
 ?>
