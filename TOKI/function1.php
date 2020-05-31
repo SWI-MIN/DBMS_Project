@@ -12,15 +12,16 @@ function opDB()
         die("連接失敗: " . $conn->connect_error."<br>");
     } 
     else {
-        echo ("成功拉幹<br>");
+        // echo ("連接資料庫成功<br>");
     }
+    
     return $conn;
     
 }
 function CloseCon($conn)
 {
     $conn -> close();
-    echo ("關掉了拉<br>");
+    // echo ("<br>關掉了<br>");
 }
 ?>
 
