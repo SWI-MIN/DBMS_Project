@@ -36,16 +36,23 @@
 
     $subject= "SELECT * FROM departcourse WHERE coursedepart = '$_POST[studepart]' 
         AND	coursefloor = '$_POST[stufloor]' AND courseclass = '$_POST[stuclass]' AND needed = 'M'";
-
-    $result = mysqli_query($conn,$subject);
-    $number = mysqli_fetch_assoc($result);
-    if ($number["coursedepart"] == $studepart && $number["coursefloor"] ==  $stufloor 
-        && $number["courseclass"] ==  $stuclass) {
-        echo $number["courseid"];
-        echo 'match';
-    } else {
-        echo 'not match';
+    if($result = mysqli_query($conn, $subject)){
+        if (mysqli_num_rows($result) > 0) {       
+          while($number= mysqli_fetch_assoc($result)){
+            if ($number["coursedepart"] == $studepart && $number["coursefloor"] ==  $stufloor 
+                && $number["courseclass"] ==  $stuclass) {
+                echo $number["courseid"];
+                echo 'match';
+            }
+          }
+        } else {
+            echo 'not match';
     }
 
+    }
+    // $result = mysqli_query($conn,$subject);
+    // $number = mysqli_fetch_assoc($result);
+     
+    
     // mysql_close($conn);
 ?>
