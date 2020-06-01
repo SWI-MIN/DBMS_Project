@@ -45,7 +45,7 @@ session_start();
       <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center">
               <li class="nav-item p-1" style="margin: 3px;">
-                  <a href="exit.php" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">查詢與加選</a>
+                  <a href="selection.php" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">查詢與加選</a>
               </li>
               <li class="nav-item p-1" style="margin: 3px;">
                   <a href="exit.php" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">當前課程與退選</a>
@@ -54,7 +54,7 @@ session_start();
             </ul>
             <hr>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-2">
-            <li class="current-menu-item"><a href=""><?php echo ($_SESSION['userData']); ?></a></li>
+            <li class="current-menu-item"><a href="connect.php"><?php echo ($_SESSION['userData']); ?></a></li>
             <li class="current-menu-item"><a href="index.php">登出</a></li>
                 
             </ul>
