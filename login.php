@@ -3,7 +3,7 @@
     
     // error_reporting(E_ALL^E_NOTICE^E_WARNING);//隐藏报错信息
     session_start();                          //儲存登入行為
-    $_SESSION['echo']="$_POST[id]";
+    $_SESSION['userData']="$_POST[id]";
 
     $dbms='mysql';     //数据库类型
     $host='localhost'; //数据库主机名
