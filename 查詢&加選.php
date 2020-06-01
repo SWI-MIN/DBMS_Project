@@ -35,7 +35,7 @@
 <body>
     <!-- 我是導覽列 -->
     <nav class="navbar navbar-expand-md navbar-light bg-light p-1 fixed-top">
-      <a class="navbar-brand ml-4" href="./首頁&課表.php" style="font-size: 30px;"><?php session_start();  echo $_SESSION['userData'];?>學號</a>
+      <a class="navbar-brand ml-4" href="./首頁&課表.php" style="font-size: 30px;"><?php echo $_SESSION['userData'];?>學號</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
           aria-expanded="false" aria-controls="myNavbar">
           <span class="navbar-toggler-icon"></span>

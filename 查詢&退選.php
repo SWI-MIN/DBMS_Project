@@ -35,7 +35,7 @@
 <body>
     <!-- 我是導覽列 -->
     <nav class="navbar navbar-expand-md navbar-light bg-light p-1 fixed-top">
-      <a class="navbar-brand ml-4" href="./首頁&課表.php" style="font-size: 30px;"><?php session_start();  echo $_SESSION['userData'];?>學號</a>
+      <a class="navbar-brand ml-4" href="./首頁&課表.php" style="font-size: 30px;"><?php echo $_SESSION['userData'];?>學號</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
           aria-expanded="false" aria-controls="myNavbar">
           <span class="navbar-toggler-icon"></span>
@@ -245,35 +245,40 @@
 <!-- ==================================================  我是分隔線  ==================================================  -->
 
                     <div class="col-md-6">
-                        <h1 class="h2">當前課表</h1>
+                      <h1 class="h2">當前課表</h1>
 
-                        <!-- 顯示出的表格 -->
-                        <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
-                            <thead>
-                              <tr class="thead-light">
-                                <th style="width:16%;">課程代號</th>
-                                <th style="width:15%;">老師</th>
-                                <th style="width:25%;">授課時間</th>
-                                <th style="width:12%;">必選修</th>
-                                <th style="width:12%;">學分數</th>
+                      <!-- 顯示出的表格 -->
+                      <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
+                        <thead>
+                          <tr class="thead-light">
+                            <th style="width:16%;">課程代號</th>
+                            <th style="width:15%;">老師</th>
+                            <th style="width:25%;">授課時間</th>
+                            <th style="width:12%;">必選修</th>
+                            <th style="width:12%;">學分數</th>
 
-                                <th style="width:65px;"></th>
-                              </tr>
-                            </thead>
-                            
-                            <tbody>
-                              <tr>
-                                <td>09487</td>
-                                <td>BBTIME</td>
-                                <td>週四10:00~12:00</td>
-                                <td>必</td>
-                                <td>2</td>
-                                <td><button type="submit" class="btn btn-danger btn-sm" id="searchBtn">退選</button> </td>
-                              </tr>
-                              
-                            </tbody>
-                            
-                        </table>
+                            <th style="width:65px;"></th>
+                          </tr>
+                        </thead>
+                        
+                        <tbody>
+                          <tr>
+                            <td>09487</td>
+                            <td>BBTIME</td>
+                            <td>週四10:00~12:00</td>
+                            <td>必</td>
+                            <td>2</td>
+                            <td><button type="submit" class="btn btn-danger btn-sm" id="searchBtn">退選</button> </td>
+                          </tr>
+                          
+                        </tbody>
+                          
+                      </table>
+                      <?php
+                        $allunits = "SELECT stuid,SUM(courseunits) FROM choosing NATURAL JOIN courseinfo
+                        GROUP BY courseunits;";
+                        echo '$allunits';
+                      ?>
 
                     </div>
                 </div>
