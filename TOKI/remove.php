@@ -1301,40 +1301,7 @@ session_start();
                         <h1 class="h2">課程查詢</h1>
                         <!-- 查詢條件 -->
                         
-                        <div class=""> 
-                        <form method="post1" class="login" >
-                        <label for="teacher_name" >老師名:</label>
-                        <input type="text" name="loginaccount" class="form-control" placeholder="輸入老師名" id="teacher_name">
-                        <button type="submit" class="btn btn-outline-primary">查詢</button>
-                        </form>
-
-                        <form method="post2" class="login" >
-                        <label for="class_num" >老師名:</label>
-                        <input type="text" name="loginaccount" class="form-control" placeholder="輸入課程代號" id="class_num">
-                        <button type="submit" class="btn btn-outline-primary">查詢</button>
-                        </form>
-
-                        <form method="post3" class="login" >
-                        <label for="class_name" >老師名:</label>
-                        <input type="text" name="loginaccount" class="form-control" placeholder="課程名" id="class_name">
-                        <button type="submit" class="btn btn-outline-primary">查詢</button>
-                        </form>
-                        <br>
-                        </div> 
-                        <?php
-                            $conn = opDB();
-                            $teacher_name = "";
-                            $class_num = "";
-                            $class_name = "";
-                            $buttom1 = "";
-                            $buttom2 = "";
-                            $buttom3 = "";
-                            echo "123";
-                            
-
-
-
-                        ?>
+                        
 
                         <!-- 顯示出的表格 -->
                         <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
@@ -1342,7 +1309,7 @@ session_start();
                               <tr class="thead-light">
                                 <th style="width:16%;">課程代號</th>
                                 <th style="width:15%;">老師</th>
-                                <th style="width:25%;">授課時間</th>
+                                <th style="width:25%;">課程名</th>
                                 <th style="width:12%;">必選修</th>
                                 <th style="width:12%;">學分數</th>
 
@@ -1351,14 +1318,51 @@ session_start();
                             </thead>
                             
                             <tbody>
-                              <tr>
-                                <td>09487</td>
-                                <td>BBTIME</td>
-                                <td>週四10:00~12:00</td>
-                                <td>必</td>
-                                <td>2</td>
-                                <td><button type="submit" class="btn btn-success btn-sm" id="searchBtn">退選</button> </td>
-                              </tr>
+
+                              <?php
+                                $conn = opDB();
+                                // for($i=0 ; $i<=30 ; $i++){
+                                //     $data1[$i] =""; 
+                                //     $data2[$i] =""; 
+                                //     $data3[$i] =""; 
+                                //     $data4[$i] =""; 
+                                //     $data5[$i] =""; 
+                                // }
+                                $id = $_SESSION['userData'];
+                                $sql_1 = "SELECT courseid FROM choosing WHERE stuid=\"$id\"";
+                                if ($result1 = $conn->query($sql_1)) {
+                                    // output data of each row
+                                    while($row = $result1->fetch_assoc()) {
+                                        // echo "<br>";
+                                        // echo $row["courseid"];
+                                        $text = $row["courseid"];
+                                        $sql_2 = "SELECT  courseid, teahername, coursename, needed, courseunits FROM DepartCourse NATURAL JOIN courseinfo WHERE courseid= \"$text\" ;";
+                                        // echo $text;
+                                        if ($result2 = $conn->query($sql_2)) {
+                                            while($row1 = $result2->fetch_assoc()) {
+                                                $data1 = $row1["courseid"];
+                                                $data2 = $row1["teahername"];
+                                                $data3 = $row1["coursename"];
+                                                $data4 = $row1["needed"];
+                                                $data5 = $row1["courseunits"];
+                                                
+                                                
+                                                ?>
+                                                <tr>
+                                                <td><?php echo $data1;?></td>
+                                                <td><?php echo $data2;?></td>
+                                                <td><?php echo $data3;?></td>
+                                                <td><?php echo $data4;?></td>
+                                                <td><?php echo $data5;?></td>
+                                                <td><button type="submit" class="btn btn-success btn-sm" id="searchBtn">退選</button></td>
+                                                </tr>
+                                                <?php 
+                                            }
+                                        }
+                                    }
+                                }
+                                ?>
+                                
                               
                             </tbody>
                             
