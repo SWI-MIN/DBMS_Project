@@ -1300,23 +1300,41 @@ session_start();
                     <div class="col-md-6">
                         <h1 class="h2">課程查詢</h1>
                         <!-- 查詢條件 -->
+                        
                         <div class=""> 
-                            <label for="" class="form-inline">
-                                &nbsp;&nbsp;
-                                <input type="text" class="form-control" id="" placeholder="老師姓名" style="width: 75%;">&nbsp;
-                                <button type="submit" class="btn btn-primary" id="searchBtn">查詢</button>
-                            </label>
-                            <label for="" class="form-inline">
-                                &nbsp;&nbsp;
-                                <input type="text" class="form-control" id="" placeholder="課程代號" style="width: 75%;">&nbsp;
-                                <button type="submit" class="btn btn-primary" id="searchBtn">查詢</button> 
-                            </label>
-                            <label for="" class="form-inline">
-                                &nbsp;&nbsp;
-                                <input type="text" class="form-control" id="" placeholder="課程名稱" style="width: 75%;">&nbsp;
-                                <button type="submit" class="btn btn-primary" id="searchBtn">查詢</button>
-                            </label>
+                        <form method="post1" class="login" >
+                        <label for="teacher_name" >老師名:</label>
+                        <input type="text" name="loginaccount" class="form-control" placeholder="輸入老師名" id="teacher_name">
+                        <button type="submit" class="btn btn-outline-primary">查詢</button>
+                        </form>
+
+                        <form method="post2" class="login" >
+                        <label for="class_num" >老師名:</label>
+                        <input type="text" name="loginaccount" class="form-control" placeholder="輸入課程代號" id="class_num">
+                        <button type="submit" class="btn btn-outline-primary">查詢</button>
+                        </form>
+
+                        <form method="post3" class="login" >
+                        <label for="class_name" >老師名:</label>
+                        <input type="text" name="loginaccount" class="form-control" placeholder="課程名" id="class_name">
+                        <button type="submit" class="btn btn-outline-primary">查詢</button>
+                        </form>
+                        <br>
                         </div> 
+                        <?php
+                            $conn = opDB();
+                            $teacher_name = "";
+                            $class_num = "";
+                            $class_name = "";
+                            $buttom1 = "";
+                            $buttom2 = "";
+                            $buttom3 = "";
+                            echo "123";
+                            
+
+
+
+                        ?>
 
                         <!-- 顯示出的表格 -->
                         <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
