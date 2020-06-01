@@ -275,9 +275,23 @@
                           
                       </table>
                       <?php
-                        $allunits = "SELECT stuid,SUM(courseunits) FROM choosing NATURAL JOIN courseinfo
-                        GROUP BY courseunits;";
-                        echo '$allunits';
+                        $dbms='mysql';     //数据库类型
+                        $host='localhost'; //数据库主机名
+                        $dbName='dbms_project';    //使用的数据库
+                        $user='root';      //数据库连接用户名
+                        $pass='';          //对应的密码
+                        $dsn="$dbms:host=$host;dbname=$dbName";
+                        $conn = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+                        $id = $_SESSION['userData'];
+                        $sun_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo
+                          WHERE stuid=\"$id\"  GROUP BY courseunits;";
+                        $aa = $conn->query($sun_units);
+                        $value_1 = $aa->fetch();
+                        echo "$value_1[0]";
+                        $a_llunits = "SELECT courseunits FROM choosing NATURAL JOIN courseinfo WHERE courseid='1318'";
+                        $bb= $conn->query($a_llunits);
+                        $value_2 = $bb->fetch();
+                        echo "$value_2[0]";
                       ?>
 
                     </div>
