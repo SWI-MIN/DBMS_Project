@@ -4,7 +4,7 @@
     session_start();
     if($logout){
         unset($_SESSION['echo']);//直接unset，或可用session里面的函数
-        echo "<script>window.location.href='loginhtml.php';</script>";
+        echo "<script>window.location.href='login_index.php';</script>";
     }
     
 ?>

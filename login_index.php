@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW ">
+<html lang="en">
 <?php 
-session_start();
-if(isset($_SESSION['userData'])){
-    exit();
-}
+    session_start();
+    if(isset($_SESSION['userData'])) {
+        exit();
+    }
 ?>
 <head>
     <meta charset="UTF-8">

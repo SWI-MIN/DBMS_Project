@@ -289,14 +289,15 @@
                         $aa = $conn->query($sun_units);
                         $value_1 = $aa->fetch();
                         echo "$value_1[0]";
-                        $a_llunits = "SELECT courseunits FROM choosing NATURAL JOIN courseinfo WHERE courseid='1318'"; // 取得學生要退選的那堂課的學分數
+                        $a_llunits = "SELECT courseunits FROM choosing NATURAL JOIN courseinfo
+                          WHERE courseid='1318'"; // 取得學生要退選的那堂課的學分數
                         $bb= $conn->query($a_llunits);
                         $value_2 = $bb->fetch();
                         echo "$value_2[0]";
                         echo "$value_1[0]" - "$value_2[0]";
 
                         if(($value_1[0] - $value_2[0]) < 9) {
-
+                          echo '<script>alert(" 不能低於 9 學分 !!! ");</script>';
                         } else {
                           
                         }
