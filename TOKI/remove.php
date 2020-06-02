@@ -23,7 +23,8 @@ session_start();
         integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
         crossorigin="anonymous"></script>
     
-    
+
+
     <style>
         body {
             font-family: Microsoft JhengHei, Arial;
@@ -59,6 +60,31 @@ session_start();
             </ul>
         </div>
     </nav>
+    <!-- /========================================我是分隔線======================================== -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">
+					警告
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+			</div>
+			<div class="modal-body">
+				你正在退必修
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" data-dismiss="modal">我就是要退
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					我錯了
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
     <!-- /========================================我是分隔線======================================== -->
 
     <div class="container-fluid">
@@ -1300,6 +1326,7 @@ session_start();
                     <div class="col-md-6">
                         <h1 class="h2">課程查詢</h1>
                         <!-- 查詢條件 -->
+
                         
                         
 
@@ -1328,24 +1355,41 @@ session_start();
                                 //     $data4[$i] =""; 
                                 //     $data5[$i] =""; 
                                 // }
+                                $sum = 0;
+                                $sun_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo WHERE stuid=\"$id\"  GROUP BY courseunits;";
+                                if ($result6 = $conn->query($sun_units)) {
+                                    while($row6 = $result6->fetch_assoc()) {
+                                        $sum = $row6["SUM(courseunits)"];
+                                    }
+                                    echo $sum;
+                                }
+                                // $countsql = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo WHERE stuid=\"$id\" GROUP BY coursenuits
+
                                 $id = $_SESSION['userData'];
-                                $sql_1 = "SELECT courseid FROM choosing WHERE stuid=\"$id\"";
-                                if ($result1 = $conn->query($sql_1)) {
+                                $sql_4 = "SELECT courseid FROM choosing WHERE stuid=\"$id\"";
+                                if ($result4 = $conn->query($sql_4)) {
                                     // output data of each row
-                                    while($row = $result1->fetch_assoc()) {
+                                    while($row4 = $result4->fetch_assoc()) {
                                         // echo "<br>";
-                                        // echo $row["courseid"];
-                                        $text = $row["courseid"];
-                                        $sql_2 = "SELECT  courseid, teahername, coursename, needed, courseunits FROM DepartCourse NATURAL JOIN courseinfo WHERE courseid= \"$text\" ;";
-                                        // echo $text;
-                                        if ($result2 = $conn->query($sql_2)) {
-                                            while($row1 = $result2->fetch_assoc()) {
-                                                $data1 = $row1["courseid"];
-                                                $data2 = $row1["teahername"];
-                                                $data3 = $row1["coursename"];
-                                                $data4 = $row1["needed"];
-                                                $data5 = $row1["courseunits"];
-                                                
+                                        // echo $row4["courseid"];
+                                        $cor_id = $row4["courseid"];
+                                        $sql_5 = "SELECT  courseid, teahername, coursename, needed, courseunits FROM DepartCourse NATURAL JOIN courseinfo WHERE courseid= \"$cor_id\" ;";
+                                        // echo $cor_id;
+                                        if ($result5 = $conn->query($sql_5)) {
+                                            while($row5 = $result5->fetch_assoc()) {
+                                                $data1 = $row5["courseid"];
+                                                $data2 = $row5["teahername"];
+                                                $data3 = $row5["coursename"];
+                                                $data4 = $row5["needed"];
+                                                $data5 = $row5["courseunits"];
+                                                $chose_count = 0;
+                                                $sql_7 = "SELECT courseunits FROM courseinfo  WHERE courseid = \"$data1\"   ";
+                                                if ($result7 = $conn->query($sql_7)) {
+                                                    while($row7 = $result7->fetch_assoc()) {
+                                                        $chose_count = $row7["courseunits"];
+                                                    }
+                                                    echo $chose_count;
+                                                }
                                                 
                                                 ?>
                                                 <tr>
@@ -1354,16 +1398,43 @@ session_start();
                                                 <td><?php echo $data3;?></td>
                                                 <td><?php echo $data4;?></td>
                                                 <td><?php echo $data5;?></td>
-                                                <td><button type="submit" class="btn btn-success btn-sm" id="searchBtn">退選</button></td>
+                                                <td><button  type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-sm" >
+                                                    退選
+                                                </button>
+                                                
                                                 </tr>
                                                 <?php 
                                             }
                                         }
                                     }
                                 }
+
+                                //==============================================================
+                                
+                                // $dbms='mysql';     
+                                // $host='localhost'; 
+                                // $dbName='dbms_project';    
+                                // $user='root';      
+                                // $pass='';          
+                                // $dsn="$dbms:host=$host;dbname=$dbName";
+                                // $conn = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+                                // $id = $_SESSION['userData'];
+                                // $sun_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo
+                                // WHERE stuid=\"$id\"  GROUP BY courseunits;";
+                                // $aa = $conn->query($sun_units);
+                                // $value_1 = $aa->fetch();
+                                // // echo "$value_1[0]";
+                                // $a_llunits = "SELECT courseunits FROM choosing NATURAL JOIN courseinfo WHERE courseid='1318'";
+                                // $bb= $conn->query($a_llunits);
+                                // $value_2 = $bb->fetch();
+                                // // echo "$value_2[0]";
+
+                                // //==============================================================
+                                // $count = $value_1[0] - $value_2[0];
+                                // echo $count;
+
                                 ?>
                                 
-                              
                             </tbody>
                             
                         </table>

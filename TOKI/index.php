@@ -3,7 +3,7 @@
 <?php 
 session_start();
 if(isset($_SESSION['userData'])){
-    // exit();
+    // exit;
 }
 ?>
 

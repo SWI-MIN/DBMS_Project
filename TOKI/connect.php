@@ -2,6 +2,7 @@
 <html lang="en">
 <?php 
 session_start();
+
 ?>
 
 <head>
@@ -77,9 +78,7 @@ session_start();
                     }
                 </style>
                 <br>
-                
-            </main>
-            <?php
+                <?php
             include 'function1.php';
             $conn = opDB();
             for($i=0 ; $i<=14 ; $i++){
@@ -1296,6 +1295,8 @@ session_start();
                     </tbody>
 
                 </table>
+            </main>
+            
         </div>
     </div>
 </body>
