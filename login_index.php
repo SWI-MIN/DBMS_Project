@@ -3,6 +3,7 @@
 <?php 
     session_start();
     if(isset($_SESSION['userData'])) {
+        header("Location: ./首頁&課表.php"); 
         exit();
     }
 ?>
@@ -35,7 +36,7 @@
 <body>
     <!-- 我是導覽列 -->
     <nav class="navbar navbar-expand-md navbar-light bg-light p-1 fixed-top">
-      <a class="navbar-brand ml-4" href="./login.html" style="font-size: 30px;">學號</a>
+      <a class="navbar-brand ml-4" href="./login_index.php" style="font-size: 30px;">學號</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
           aria-expanded="false" aria-controls="myNavbar">
           <span class="navbar-toggler-icon"></span>
@@ -44,10 +45,10 @@
       <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0 text-center">
               <li class="nav-item p-1" style="margin: 3px;">
-                  <a href="./login.html" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">查詢與加選</a>
+                  <a href="./login_index.php" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">查詢與加選</a>
               </li>
               <li class="nav-item p-1" style="margin: 3px;">
-                  <a href="./login.html" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">當前課程與退選</a>
+                  <a href="./login_index.php" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">當前課程與退選</a>
               </li>
                 
             </ul>

@@ -2,6 +2,11 @@
 <html lang="en">
 <?php
     session_start();
+    if(isset($_SESSION['userData'])) {
+    } else {
+      header("Location: ./login_index.php"); 
+      exit();
+    }
   ?>
 <head>
     <meta charset="UTF-8">

@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-  <?php
+<?php
     session_start();
+    if(isset($_SESSION['userData'])) {
+    } else {
+      header("Location: ./login_index.php"); 
+      exit();
+    }
   ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>DBMS_Project_查詢&加選</title>
+    <title>DBMS_Project_首頁&課表</title>
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"></script>
