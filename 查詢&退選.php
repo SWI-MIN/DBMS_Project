@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-Hant-TW ">
 <?php
     session_start();
   ?>
@@ -245,36 +245,36 @@
 <!-- ==================================================  我是分隔線  ==================================================  -->
 
                     <div class="col-md-6">
-                      <h1 class="h2">當前課表</h1>
+                        <h1 class="h2">當前課表</h1>
 
-                      <!-- 顯示出的表格 -->
-                      <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
-                        <thead>
-                          <tr class="thead-light">
-                            <th style="width:16%;">課程代號</th>
-                            <th style="width:15%;">老師</th>
-                            <th style="width:25%;">授課時間</th>
-                            <th style="width:12%;">必選修</th>
-                            <th style="width:12%;">學分數</th>
+                        <!-- 顯示出的表格 -->
+                        <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
+                            <thead>
+                              <tr class="thead-light">
+                                <th style="width:16%;">課程代號</th>
+                                <th style="width:15%;">老師</th>
+                                <th style="width:25%;">授課時間</th>
+                                <th style="width:12%;">必選修</th>
+                                <th style="width:12%;">學分數</th>
 
-                            <th style="width:65px;"></th>
-                          </tr>
-                        </thead>
-                        
-                        <tbody>
-                          <tr>
-                            <td>09487</td>
-                            <td>BBTIME</td>
-                            <td>週四10:00~12:00</td>
-                            <td>必</td>
-                            <td>2</td>
-                            <td><button type="submit" class="btn btn-danger btn-sm" id="searchBtn">退選</button> </td>
-                          </tr>
-                          
-                        </tbody>
-                          
-                      </table>
-                      <?php
+                                <th style="width:65px;"></th>
+                              </tr>
+                            </thead>
+                            
+                            <tbody>
+                              <tr>
+                                <td>09487</td>
+                                <td>BBTIME</td>
+                                <td>週四10:00~12:00</td>
+                                <td>必</td>
+                                <td>2</td>
+                                <td><button type="submit" class="btn btn-danger btn-sm" id="searchBtn">退選</button> </td>
+                              </tr>
+                              
+                            </tbody>
+                            
+                        </table>
+                        <?php
                         $dbms='mysql';     //数据库类型
                         $host='localhost'; //数据库主机名
                         $dbName='dbms_project';    //使用的数据库

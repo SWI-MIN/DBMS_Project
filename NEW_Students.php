@@ -1,12 +1,8 @@
 <?php
     header("Content-type: text/html; charset=utf-8");//頁面編碼
 
-    $dbms='mysql';     //数据库类型
-    $host='localhost'; //数据库主机名
-    $dbName='dbms_project';    //使用的数据库
-    $user='root';      //数据库连接用户名
-    $pass='';          //对应的密码
-    $dsn="$dbms:host=$host;dbname=$dbName";
+    include 'db_connect.php';
+    $conn = opDB();
     
     $stuid = $_POST['stuid'];                              //取得USER輸入的id
     $pwd = $_POST['pwd'];                                   //取得USER輸入的password

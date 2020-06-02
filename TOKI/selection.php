@@ -47,7 +47,7 @@ session_start();
                   <a href="selection.php" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">查詢與加選</a>
               </li>
               <li class="nav-item p-1" style="margin: 3px;">
-                  <a href="remove.php" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">當前課程與退選</a>
+                  <a href="exit.php" class="nav-link" style="font-size: 18px; color: rgb( 100, 100, 100);">當前課程與退選</a>
               </li>
                 
             </ul>
