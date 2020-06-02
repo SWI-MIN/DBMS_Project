@@ -289,23 +289,46 @@
                         $conn = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));// 連接資料庫
 
                         $id = $_SESSION['userData'];      // 取得登入者資料
-                        $sun_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo
-                          WHERE stuid=\"$id\"  GROUP BY courseunits;";      // 取得某學生的總學分數
-                        $aa = $conn->query($sun_units);
-                        $value_1 = $aa->fetch();
-                        echo "$value_1[0]";
-                        $a_llunits = "SELECT courseunits FROM choosing NATURAL JOIN courseinfo
-                          WHERE courseid='1318'"; // 取得學生要退選的那堂課的學分數
-                        $bb= $conn->query($a_llunits);
-                        $value_2 = $bb->fetch();
-                        echo "$value_2[0]";
-                        echo "$value_1[0]" - "$value_2[0]";
 
-                        if(($value_1[0] - $value_2[0]) < 9) {
-                          echo '<script>alert(" 不能低於 9 學分 !!! ");</script>';
-                        } else {
+                        // $sun_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo
+                        //   WHERE stuid=\"$id\"  GROUP BY courseunits;";      // 取得某學生的總學分數
+                        // $aa = $conn->query($sun_units);
+                        // $value_1 = $aa->fetch();
+                        // echo "$value_1[0]";
+                        // $a_llunits = "SELECT courseunits FROM choosing NATURAL JOIN courseinfo
+                        //   WHERE courseid='1318';"; // 取得學生要退選的那堂課的學分數
+                        // $bb= $conn->query($a_llunits);
+                        // $value_2 = $bb->fetch();
+                        // echo "$value_2[0]";
+                        // echo "$value_1[0]" - "$value_2[0]";
+
+                        $a_dep_01 = "SELECT stuid, courseid, studepart, stufloor, coursedepart, coursefloor, needed
+                         FROM (students NATURAL JOIN choosing ) NATURAL JOIN departcourse 
+                         WHERE stuid = 'D0752939(swssion中的資料)' AND courseid = '要退的那堂ID' 
+                         AND studepart = coursedepart AND stufloor = coursefloor AND needed = 'M';";
+
+                        $a_dep_01 = "SELECT studepart FROM `students` WHERE stuid = \"$id\";"; // 取得學生的系所
+                        $a_dep_02= $conn->query($a_dep_01);
+                        $a_dep_03 = $a_dep_02->fetch();
+                        echo "$a_dep_03[0]";
+
+                        $b_dep_01 = "SELECT studepart FROM `students` WHERE stuid = \"$id\";"; // 取得學生要退選的那堂課的系所
+                        $b_dep_02= $conn->query($b_dep_01);
+                        $b_dep_03 = $b_dep_02->fetch();
+                        echo "$b_dep_03[0]";
+                        // $a_llunits = "SELECT courseunits FROM choosing NATURAL JOIN courseinfo
+                        //   WHERE courseid='1318'"; // 取得學生要退選的那堂課是必修還是選修
+                        // $bb= $conn->query($a_llunits);
+                        // $value_2 = $bb->fetch();
+                        // echo "$value_2[0]";
+
+
+
+                        // if(($value_1[0] - $value_2[0]) < 9) {
+                        //   echo '<script>alert(" 不能低於 9 學分 !!! ");</script>';
+                        // } else if(這學生是資訊系，退選該系必修(要判斷年級喔，同年級才跳提醒)) {
                           
-                        }
+                        // }
                       ?>
 
                     </div>
