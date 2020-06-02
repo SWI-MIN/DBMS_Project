@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW ">
+<html lang="en">
 <?php
     session_start();
   ?>
@@ -245,53 +245,61 @@
 <!-- ==================================================  我是分隔線  ==================================================  -->
 
                     <div class="col-md-6">
-                        <h1 class="h2">當前課表</h1>
+                      <h1 class="h2">當前課表</h1>
 
-                        <!-- 顯示出的表格 -->
-                        <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
-                            <thead>
-                              <tr class="thead-light">
-                                <th style="width:16%;">課程代號</th>
-                                <th style="width:15%;">老師</th>
-                                <th style="width:25%;">授課時間</th>
-                                <th style="width:12%;">必選修</th>
-                                <th style="width:12%;">學分數</th>
+                      <!-- 顯示出的表格 -->
+                      <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
+                        <thead>
+                          <tr class="thead-light">
+                            <th style="width:16%;">課程代號</th>
+                            <th style="width:15%;">老師</th>
+                            <th style="width:25%;">授課時間</th>
+                            <th style="width:12%;">必選修</th>
+                            <th style="width:12%;">學分數</th>
 
-                                <th style="width:65px;"></th>
-                              </tr>
-                            </thead>
-                            
-                            <tbody>
-                              <tr>
-                                <td>09487</td>
-                                <td>BBTIME</td>
-                                <td>週四10:00~12:00</td>
-                                <td>必</td>
-                                <td>2</td>
-                                <td><button type="submit" class="btn btn-danger btn-sm" id="searchBtn">退選</button> </td>
-                              </tr>
-                              
-                            </tbody>
-                            
-                        </table>
-                        <?php
+                            <th style="width:65px;"></th>
+                          </tr>
+                        </thead>
+                        
+                        <tbody>
+                          <tr>
+                            <td>09487</td>
+                            <td>BBTIME</td>
+                            <td>週四10:00~12:00</td>
+                            <td>必</td>
+                            <td>2</td>
+                            <td><button type="submit" class="btn btn-danger btn-sm" id="searchBtn">退選</button> </td>
+                          </tr>
+                          
+                        </tbody>
+                          
+                      </table>
+                      <?php
                         $dbms='mysql';     //数据库类型
                         $host='localhost'; //数据库主机名
                         $dbName='dbms_project';    //使用的数据库
                         $user='root';      //数据库连接用户名
                         $pass='';          //对应的密码
                         $dsn="$dbms:host=$host;dbname=$dbName";
-                        $conn = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));
-                        $id = $_SESSION['userData'];
+                        $conn = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));// 連接資料庫
+
+                        $id = $_SESSION['userData'];      // 取得登入者資料
                         $sun_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo
-                          WHERE stuid=\"$id\"  GROUP BY courseunits;";
+                          WHERE stuid=\"$id\"  GROUP BY courseunits;";      // 取得某學生的總學分數
                         $aa = $conn->query($sun_units);
                         $value_1 = $aa->fetch();
                         echo "$value_1[0]";
-                        $a_llunits = "SELECT courseunits FROM choosing NATURAL JOIN courseinfo WHERE courseid='1318'";
+                        $a_llunits = "SELECT courseunits FROM choosing NATURAL JOIN courseinfo WHERE courseid='1318'"; // 取得學生要退選的那堂課的學分數
                         $bb= $conn->query($a_llunits);
                         $value_2 = $bb->fetch();
                         echo "$value_2[0]";
+                        echo "$value_1[0]" - "$value_2[0]";
+
+                        if(($value_1[0] - $value_2[0]) < 9) {
+
+                        } else {
+                          
+                        }
                       ?>
 
                     </div>
