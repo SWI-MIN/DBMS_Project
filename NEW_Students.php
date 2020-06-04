@@ -11,7 +11,7 @@
     $stufloor = $_POST['stufloor'];                                   
     $stuclass = $_POST['stuclass'];
 
-    $conn = new mysqli($host, $user, $pass, $dbName);       // 連接資料庫
+    // $conn = new mysqli($host, $user, $pass, $dbName);       // 連接資料庫
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
