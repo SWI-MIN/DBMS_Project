@@ -21,7 +21,7 @@
     $bb= $conn->query($a_llunits);
     $value_2 = $bb->fetch();
     // echo "$value_2[0]";
-    echo "$value_1[0]" - "$value_2[0]";
+    // echo "$value_1[0]" - "$value_2[0]";
 
     $a_dep_01 = "SELECT stuid, courseid, studepart, stufloor, coursedepart, coursefloor, needed
     FROM (students NATURAL JOIN choosing ) NATURAL JOIN departcourse 
@@ -29,28 +29,29 @@
     AND studepart = coursedepart AND stufloor = coursefloor AND needed = 'M';";
     $a_dep_02= $conn->query($a_dep_01);
     $a_dep_03 = $a_dep_02->fetch();        // (6行)確認是否為該學生之必修，有值 = 必修，空值 = 非必修
-    echo "$a_dep_03[0]";
+    // echo "$a_dep_03[0]";
     
     
     
-    if(($value_1[0] - $value_2[0]) > 9) {
+    if(($value_1[0] - $value_2[0]) < 9) {
         echo '<script>alert(" 不能低於 9 學分 !!! ");history.go(-1);</script>';
-        $a_dep_03[0];
+        // echo $a_dep_03[0];
     } else if(!empty($a_dep_03[0])) {
-        $a_dep_03[0];
+        // echo $a_dep_03[0];
         echo '<script type="text/javascript"> 
         function reallydel(){ 
             var r=confirm("這是必修，你確定要退??")
             if (r==true){
-            document.write("You pressed OK!")
+                alert("假裝你成功退選嘞");
+                history.go(-1);;
             } else {
-            document.onclick = delete_confirm;
+                history.go(-1);
             }
         }
+        reallydel();
         </script>';
-        $a_dep_03[0];
     } else {
-        $a_dep_03[0];
+        echo '<script>alert("假裝你成功退選嘞");history.go(-1);</script>';
     }
     
 
