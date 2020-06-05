@@ -24,7 +24,7 @@
             if(empty($number)){
                 echo '<script>alert("沒有這門課喔!!");history.go(-1);</script>';
             } else {
-
+                // 這裡要印出資料喔!!!
             }
         }  
     } else if (isset($_POST["b_courseid"])) {
@@ -40,7 +40,7 @@
             if(empty($number)){
                 echo '<script>alert("沒有這門課喔!!");history.go(-1);</script>';
             } else {
-                
+                // 這裡要印出資料喔!!!
             }
         }  
     } else if (isset($_POST["b_coursename"])) { 
@@ -56,7 +56,7 @@
             if(empty($number)){
                 echo '<script>alert("沒有這門課喔!!");history.go(-1);</script>';
             } else {
-
+                // 這裡要印出資料喔!!!
             }
         }  
     } else {  

@@ -1397,8 +1397,8 @@
                           ?>
                         </tbody>
                         <form action="opt_out.php">
-                        <button onclick="reallydel()" type="submit" name="submit" data-toggle="modal" data-target="#myModal" class="btn btn-danger  btn-sm" >退選</button>
-                          </form>
+                            <button onclick="reallydel()" type="submit" name="submit" data-toggle="modal" data-target="#myModal" class="btn btn-danger  btn-sm" >退選</button>
+                        </form>
                       </table>
                       
                       <?php

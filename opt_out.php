@@ -11,8 +11,10 @@
 
     $id = $_SESSION['userData'];      // 取得登入者資料
 
+
+
     $sun_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo
-    WHERE stuid = 'D0752939' GROUP BY courseunits;";      // 取得某學生的總學分數
+    WHERE stuid = 'D0752939';";      // 取得某學生的總學分數
     $aa = $conn->query($sun_units);
     $value_1 = $aa->fetch();
     // echo "$value_1[0]";
@@ -52,6 +54,10 @@
         </script>';
     } else {
         echo '<script>alert("假裝你成功退選嘞");history.go(-1);</script>';
+
+        // 執行退選這項工作的SQL
+        // UPDATE courseinfo SET coursestu = (coursestu -1) WHERE courseid = '1318'; 退選的那門課人數減一
+        // DELETE FROM choosing WHERE courseid = '1318';  刪除選課的那門課程
     }
     
 
