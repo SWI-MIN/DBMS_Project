@@ -1360,12 +1360,12 @@
                                     // echo "<br>";
                                     // echo $row4["courseid"];
                                     $cor_id = $row4["courseid"];
-                                    $sql_5 = "SELECT  courseid, teahername, coursename, needed, courseunits FROM DepartCourse NATURAL JOIN courseinfo WHERE courseid= \"$cor_id\" ;";
+                                    $sql_5 = "SELECT  courseid, teachername, coursename, needed, courseunits FROM DepartCourse NATURAL JOIN courseinfo WHERE courseid= \"$cor_id\" ;";
                                     // echo $cor_id;
                                     if ($result5 = $conn->query($sql_5)) {
                                         while($row5 = $result5->fetch()) {
                                             $data1 = $row5["courseid"];
-                                            $data2 = $row5["teahername"];
+                                            $data2 = $row5["teachername"];
                                             $data3 = $row5["coursename"];
                                             $data4 = $row5["needed"];
                                             $data5 = $row5["courseunits"];
