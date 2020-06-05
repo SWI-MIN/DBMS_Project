@@ -22,7 +22,7 @@
     WHERE courseid='1318';"; // 取得學生要加選的那堂課的學分數
     $bb= $conn->query($a_llunits);
     $value_2 = $bb->fetch();
-
+    
 
     $a_dep_01 = "SELECT * FROM `courseinfo` WHERE courseid = '1278' AND maxstu<=(coursestu+1);";
     $a_dep_02= $conn->query($a_dep_01);

@@ -17,13 +17,11 @@
     WHERE stuid = 'D0752939';";      // 取得某學生的總學分數
     $aa = $conn->query($sun_units);
     $value_1 = $aa->fetch();
-    // echo "$value_1[0]";
+
     $a_llunits = "SELECT courseunits FROM choosing NATURAL JOIN courseinfo
     WHERE courseid='1318';"; // 取得學生要退選的那堂課的學分數
     $bb= $conn->query($a_llunits);
     $value_2 = $bb->fetch();
-    // echo "$value_2[0]";
-    // echo "$value_1[0]" - "$value_2[0]";
 
     $a_dep_01 = "SELECT stuid, courseid, studepart, stufloor, coursedepart, coursefloor, needed
     FROM (students NATURAL JOIN choosing ) NATURAL JOIN departcourse 
@@ -31,10 +29,25 @@
     AND studepart = coursedepart AND stufloor = coursefloor AND needed = 'M';";
     $a_dep_02= $conn->query($a_dep_01);
     $a_dep_03 = $a_dep_02->fetch();        // (6行)確認是否為該學生之必修，有值 = 必修，空值 = 非必修
-    // echo "$a_dep_03[0]";
     
-    
-    
+
+
+// 下面這段可以試試
+    $b_dep_01 = "SELECT courseid FROM choosing NATURAL JOIN courseinfo WHERE stuid='$id';";
+    $b_dep_02= $conn->query($b_dep_01);
+    $b_dep_03 = $b_dep_02->fetchAll(PDO::FETCH_ASSOC);
+    $i=0;
+    foreach($b_dep_03 as $b_dep_03){
+        foreach($b_dep_03 as $key => $value[$i]){
+            echo $key." : ".$value[$i]."<br />";
+            $i++;
+        }
+    }
+    echo $value[3];
+
+
+
+
     if(($value_1[0] - $value_2[0]) < 9) {
         echo '<script>alert(" 不能低於 9 學分 !!! ");history.go(-1);</script>';
         // echo $a_dep_03[0];
@@ -57,7 +70,7 @@
 
         // 執行退選這項工作的SQL
         // UPDATE courseinfo SET coursestu = (coursestu -1) WHERE courseid = '1318'; 退選的那門課人數減一
-        // DELETE FROM choosing WHERE courseid = '1318';  刪除選課的那門課程
+        // DELETE FROM choosing WHERE courseid = '1318' AND stuid = '學生';  刪除選課的那門課程
     }
     
 

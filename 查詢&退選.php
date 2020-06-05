@@ -1402,15 +1402,33 @@
                       </table>
                       
                       <?php
-                          // $dbms='mysql';     //数据库类型
-                          // $host='localhost'; //数据库主机名
-                          // $dbName='dbms_project';    //使用的数据库
-                          // $user='root';      //数据库连接用户名
-                          // $pass='';          //对应的密码
-                          // $dsn="$dbms:host=$host;dbname=$dbName";
-                          // $conn = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));// 連接資料庫
+                        
+                        //   $dbms='mysql';     //数据库类型
+                        //   $host='localhost'; //数据库主机名
+                        //   $dbName='dbms_project';    //使用的数据库
+                        //   $user='root';      //数据库连接用户名
+                        //   $pass='';          //对应的密码
+                        //   $dsn="$dbms:host=$host;dbname=$dbName";
+                        //   $conn = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));// 連接資料庫
 
-                          // $id = $_SESSION['userData'];      // 取得登入者資料
+                        //   $id = $_SESSION['userData'];      // 取得登入者資料
+
+                        // $b_dep_01 = "SELECT courseid
+                        // FROM choosing NATURAL JOIN courseinfo
+                        // WHERE stuid='$id';";
+                        // $b_dep_02= $conn->query($b_dep_01);
+                        // $b_dep_03 = $b_dep_02->fetchAll(PDO::FETCH_ASSOC);
+                        // // $count = $b_dep_02->rowCount();
+                        // $i=0;
+                        // foreach($b_dep_03 as $b_dep_03){
+                        //     foreach($b_dep_03 as $key => $value[$i]){
+                        //         echo $key." : ".$value[$i]."<br />";
+                        //         $i++;
+                        //     }
+                        // }
+                        // echo $value[3];
+
+
 
                           // $sun_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo
                           //   WHERE stuid = 'D0752939' GROUP BY courseunits;";      // 取得某學生的總學分數
