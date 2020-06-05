@@ -294,7 +294,7 @@
                                 <td>週四10:00~12:00</td>
                                 <td>必</td>
                                 <td>2</td>
-                                <td><button type="submit" class="btn btn-success btn-sm" id="searchBtn">加選</button> </td>
+                                <td><form action="opt_out.php"><button type="submit" class="btn btn-success btn-sm" id="searchBtn">加選</button></form></td>
                               </tr>
                               
                             </tbody>
