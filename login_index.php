@@ -69,7 +69,7 @@
                         <label for="Password" >密碼:</label>
                         <input type="Password" name="password" class="form-control" placeholder="輸入密碼" >
                         <br>
-                        <button type="submit" name="submit" id="l_login" value="Login" class="btn btn-outline-primary">確認</button>
+                        <button type="submit" name="login" id="l_login" value="Login" class="btn btn-outline-primary">確認</button>
                     </form>
                     <br>
                     <hr>

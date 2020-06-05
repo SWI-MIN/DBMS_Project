@@ -250,21 +250,27 @@
                         <h1 class="h2">課程查詢</h1>
                         <!-- 查詢條件 -->
                         <div class=""> 
+                          <form action="inquire.php" method="post" class="inquire" >
                             <label for="" class="form-inline">
                                 &nbsp;&nbsp;
-                                <input type="text" class="form-control" id="" placeholder="老師姓名" style="width: 75%;">&nbsp;
-                                <button type="submit" class="btn btn-primary" id="searchBtn">查詢</button>
+                                <input type="text" name="teachername" class="form-control" placeholder="老師姓名" style="width: 75%;">&nbsp;
+                                <button type="submit" name="b_teachername" class="btn btn-primary" id="searchBtn">查詢</button>
                             </label>
+                          </form>
+                          <form action="inquire.php" method="post" class="inquire" >
                             <label for="" class="form-inline">
                                 &nbsp;&nbsp;
-                                <input type="text" class="form-control" id="" placeholder="課程代號" style="width: 75%;">&nbsp;
-                                <button type="submit" class="btn btn-primary" id="searchBtn">查詢</button> 
+                                <input type="text" name="courseid" class="form-control" placeholder="課程代號" style="width: 75%;">&nbsp;
+                                <button type="submit" name="b_courseid" class="btn btn-primary" id="searchBtn">查詢</button> 
                             </label>
+                          </form>
+                          <form action="inquire.php" method="post" class="inquire" >
                             <label for="" class="form-inline">
                                 &nbsp;&nbsp;
-                                <input type="text" class="form-control" id="" placeholder="課程名稱" style="width: 75%;">&nbsp;
-                                <button type="submit" class="btn btn-primary" id="searchBtn">查詢</button>
+                                <input type="text" name="coursename" class="form-control" placeholder="課程名稱" style="width: 75%;">&nbsp;
+                                <button type="submit" name="b_coursename" class="btn btn-primary" id="searchBtn">查詢</button>
                             </label>
+                          </form>
                         </div> 
 
                         <!-- 顯示出的表格 -->
@@ -273,7 +279,7 @@
                               <tr class="thead-light">
                                 <th style="width:16%;">課程代號</th>
                                 <th style="width:15%;">老師</th>
-                                <th style="width:25%;">授課時間</th>
+                                <th style="width:25%;">課程名稱</th>
                                 <th style="width:12%;">必選修</th>
                                 <th style="width:12%;">學分數</th>
 

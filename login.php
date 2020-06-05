@@ -12,7 +12,7 @@
     $dsn="$dbms:host=$host;dbname=$dbName";
     
 
-    if(isset($_POST["submit"]) && $_POST["submit"])  {
+    if(isset($_POST["login"]))  {
         $id = $_POST['id'];   
         $password = $_POST['password'];     
 

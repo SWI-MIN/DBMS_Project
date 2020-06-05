@@ -1316,7 +1316,7 @@
                           <tr class="thead-light">
                             <th style="width:16%;">課程代號</th>
                             <th style="width:15%;">老師</th>
-                            <th style="width:25%;">授課時間</th>
+                            <th style="width:25%;">課程名稱</th>
                             <th style="width:12%;">必選修</th>
                             <th style="width:12%;">學分數</th>
 
