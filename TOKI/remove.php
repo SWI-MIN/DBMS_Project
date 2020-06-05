@@ -56,35 +56,13 @@ session_start();
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-2">
             <li class="current-menu-item"><a href="connect.php"><?php echo ($_SESSION['userData']); ?></a></li>
             <li class="current-menu-item"><a href="index.php">登出</a></li>
+            
                 
             </ul>
         </div>
     </nav>
     <!-- /========================================我是分隔線======================================== -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">
-					警告
-                </h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-					&times;
-				</button>
-			</div>
-			<div class="modal-body">
-				你正在退必修
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-primary" data-dismiss="modal">我就是要退
-				</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">
-					我錯了
-				</button>
-			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal -->
-</div>
+    
     <!-- /========================================我是分隔線======================================== -->
 
     <div class="container-fluid">
@@ -1326,10 +1304,8 @@ session_start();
                     <div class="col-md-6">
                         <h1 class="h2">課程查詢</h1>
                         <!-- 查詢條件 -->
-
                         
-                        
-
+                       
                         <!-- 顯示出的表格 -->
                         <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
                             <thead>
@@ -1345,6 +1321,42 @@ session_start();
                             </thead>
                             
                             <tbody>
+                            
+                            <!-- ==================================================  我是分隔線  ==================================================  -->
+                            <?php 
+                            // // $id;
+                            // $conn = opDB();
+                            // $id = $_SESSION['userData'];
+                            // $j = 1;
+                            // echo $id;
+                            // // echo "<br>";
+                            // for ($j=1;$j<=30;$j++)
+                            // {
+                            //     $course[$j]="";
+                            // }
+                            // $j = 1;
+                            // $sql_4 = "SELECT courseid FROM choosing WHERE stuid=\"$id\"";
+                            // if ($result4 = $conn->query($sql_4)) {
+                            //     while($row4 = $result4->fetch_assoc()) {
+                            //         // echo "<br>==================<br>";
+                            //         // echo $row4["courseid"];
+                            //         // echo "<br>==================<br>";
+                            //         $course[$j] = $row4["courseid"];
+                            //         $j = $j + 1 ;
+                            //         // echo $course[$j];
+                            //     }
+                            // }
+                            // $j = 1;
+                            // for ($j=1;$j<=30;$j++) {
+                            //     if ($course[$j]!=null) {
+                            //         echo "<br>";
+                            //         echo $course[$j];
+                            //     }
+                            // }
+
+                            
+                            ?>
+                            <!-- ==================================================  我是分隔線  ==================================================  -->
 
                               <?php
                                 $conn = opDB();
@@ -1356,40 +1368,68 @@ session_start();
                                 //     $data5[$i] =""; 
                                 // }
                                 $sum = 0;
-                                $sun_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo WHERE stuid=\"$id\"  GROUP BY courseunits;";
+                                $sun_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo WHERE stuid=\"$id\";";
                                 if ($result6 = $conn->query($sun_units)) {
                                     while($row6 = $result6->fetch_assoc()) {
                                         $sum = $row6["SUM(courseunits)"];
                                     }
-                                    echo $sum;
+                                    // echo $sum;
                                 }
+                                
+                                
                                 // $countsql = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo WHERE stuid=\"$id\" GROUP BY coursenuits
 
                                 $id = $_SESSION['userData'];
+                                // echo $id;
                                 $sql_4 = "SELECT courseid FROM choosing WHERE stuid=\"$id\"";
                                 if ($result4 = $conn->query($sql_4)) {
                                     // output data of each row
+                                    // $a = 0;
                                     while($row4 = $result4->fetch_assoc()) {
                                         // echo "<br>";
                                         // echo $row4["courseid"];
                                         $cor_id = $row4["courseid"];
-                                        $sql_5 = "SELECT  courseid, teahername, coursename, needed, courseunits FROM DepartCourse NATURAL JOIN courseinfo WHERE courseid= \"$cor_id\" ;";
+                                        $sql_5 = "SELECT  courseid, teachername, coursename, needed, courseunits FROM DepartCourse NATURAL JOIN courseinfo WHERE courseid= \"$cor_id\" ;";
                                         // echo $cor_id;
+                                        
                                         if ($result5 = $conn->query($sql_5)) {
-                                            while($row5 = $result5->fetch_assoc()) {
+                                            $textxxx = "";
+                                            while($row5 = $result5->fetch_assoc()) 
+                                            {
+                                                if ($row5["courseid"]!=$textxxx) {
                                                 $data1 = $row5["courseid"];
-                                                $data2 = $row5["teahername"];
+                                                $textxxx = $data1;
+                                                $data2 = $row5["teachername"];
                                                 $data3 = $row5["coursename"];
                                                 $data4 = $row5["needed"];
                                                 $data5 = $row5["courseunits"];
-                                                $chose_count = 0;
+                                                
                                                 $sql_7 = "SELECT courseunits FROM courseinfo  WHERE courseid = \"$data1\"   ";
                                                 if ($result7 = $conn->query($sql_7)) {
+                                                    
                                                     while($row7 = $result7->fetch_assoc()) {
                                                         $chose_count = $row7["courseunits"];
                                                     }
-                                                    echo $chose_count;
+                                                    // echo $chose_count;
+                                                    
                                                 }
+                                                $text123 = "1";
+                                                $a_dep_01 = "SELECT stuid, courseid, studepart, stufloor, coursedepart, coursefloor, needed
+                                                    FROM (students NATURAL JOIN choosing ) NATURAL JOIN departcourse 
+                                                    WHERE stuid = '$id' AND courseid = '$data1' 
+                                                    AND studepart = coursedepart AND stufloor = coursefloor AND needed = 'M';";
+                                                if ($result7 = $conn->query($a_dep_01)) {
+                                                    while($row7 = $result7->fetch_assoc()) {
+                                                        
+                                                        $text123 = "123";
+                                                        // echo $text123;
+
+                                                        
+                                                        
+                                                    } 
+                                                        
+                                                }
+                                                    
                                                 
                                                 ?>
                                                 <tr>
@@ -1398,18 +1438,36 @@ session_start();
                                                 <td><?php echo $data3;?></td>
                                                 <td><?php echo $data4;?></td>
                                                 <td><?php echo $data5;?></td>
-                                                <td><button  type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-success btn-sm" >
+                                                <td> 
+                                                <!-- <script>
+                                                function express(){
+                                                var value="abc";
+                                                var a123="123";
+                                                location.href="print.php?value=" +value+a123;
+                                                history.go(0);
+                                                }
+                                                </script>
+                                                <input type="button" value="button" onclick="express()"> -->
+                                                <button  type="submit" onclick="btn_click(<?php echo $data1; ?>,<?php echo $chose_count; ?>,<?php echo $text123; ?>)"  class="btn btn-danger btn-sm" >
                                                     退選
+                                                
                                                 </button>
+
+                                                </td>
                                                 
                                                 </tr>
+
                                                 <?php 
                                             }
+                                            
+                                        }
                                         }
                                     }
                                 }
 
+
                                 //==============================================================
+                                
                                 
                                 // $dbms='mysql';     
                                 // $host='localhost'; 
@@ -1432,16 +1490,93 @@ session_start();
                                 // //==============================================================
                                 // $count = $value_1[0] - $value_2[0];
                                 // echo $count;
-
+                                
                                 ?>
+
+                                <!-- <script language="javascript">
+                                function btn_click(x,y,z) {
+                                    var id="<?php echo $id; ?>";
+                                    var course = x;
+                                    var sum="<?php echo $sum; ?>";
+                                    var faQ=y;
+                                    
+                                    
+                                    
+                                    var needed = z;
+                                    if (sum - faQ <9 || sum - faQ >30) {
+                                        alert("分數會低於九學分! 不能退選喔");
+                                    }
+                                    else {
+                                        if (needed==123){
+                                            var r=confirm("這是必修，你確定要退??")
+                                            if (r==true){
+                                                alert("假裝你成功退選嘞");
+
+                                                history.go(-1);
+                                            } else {
+                                                
+                                            }
+                                        }
+                                        else{
+                                            alert("這不是必選");
+                                        }
+                                        
+                                        
+                                    }
+                                
+                                // 　alert(y);
+                                
+                                }
+                                </script> -->
                                 
                             </tbody>
                             
                         </table>
 
                     </div>
+                    
                 </div>
 
+
+                <!--==================================================================================== -->
+                <script language="javascript">
+                function btn_click(x,y,z) {
+                var id="<?php echo $id; ?>";
+                var course = x;
+                var sum="<?php echo $sum; ?>";
+                var faQ=y;
+
+                var needed = z;
+                if (sum - faQ <9 || sum - faQ >30) {
+                alert("分數會低於九學分! 不能退選喔");
+                }
+                else {
+                    if (needed==123){
+                    var r=confirm("這是必修，你確定要退??")
+                        if (r==true){
+                            
+                                                    
+                        location.href="delect.php?value=" +course;
+                          
+                        // history.go(-1);
+                        } else {
+                                                                    
+                        }
+                    }
+                    else{
+                    location.href="delect.php?value=" +course;
+                    // history.go(0);
+                    }
+                                                            
+                                                            
+                }
+                                                    
+                // 　alert(y);
+                                                    
+                }
+                </script>
+                
+                <!--==================================================================================== -->
             </main>
         </div>
         </div>

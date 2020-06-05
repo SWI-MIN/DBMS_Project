@@ -23,6 +23,7 @@ function CloseCon($conn)
     $conn -> close();
     // echo ("<br>關掉了<br>");
 }
+
 ?>
 
 
