@@ -21,7 +21,11 @@
                 WHERE teachername='$teachername';";
             $result = $conn->query($sql);
             $number = $result->fetch(); //mysqli_num_rows($result);
-            
+            if(empty($number)){
+                echo '<script>alert("沒有這門課喔!!");history.go(-1);</script>';
+            } else {
+
+            }
         }  
     } else if (isset($_POST["b_courseid"])) {
         $courseid = $_POST['courseid'];     
@@ -33,20 +37,27 @@
                 WHERE courseid='$courseid';";
             $result = $conn->query($sql);
             $number = $result->fetch(); //mysqli_num_rows($result);
-            
+            if(empty($number)){
+                echo '<script>alert("沒有這門課喔!!");history.go(-1);</script>';
+            } else {
+                
+            }
         }  
     } else if (isset($_POST["b_coursename"])) { 
         $coursename = $_POST['coursename'];     
         
         if ($coursename == ''){
             echo '<script>alert("課程名稱不能為空!!");history.go(-1);</script>';
-
         } else {
             $sql = "SELECT courseid, teachername,  coursename, needed, coursefloor FROM courseinfo NATURAL JOIN departcourse 
                 WHERE coursename='$coursename';";
             $result = $conn->query($sql);
             $number = $result->fetch(); //mysqli_num_rows($result);
-            
+            if(empty($number)){
+                echo '<script>alert("沒有這門課喔!!");history.go(-1);</script>';
+            } else {
+
+            }
         }  
     } else {  
         echo "<script>alert('ERROR'); history.go(-1);</script>";  
