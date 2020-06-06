@@ -1304,19 +1304,19 @@ session_start();
                         <div class=""> 
                         <form method="post1" class="login" >
                         <label for="teacher_name" >老師名:</label>
-                        <input type="text" name="loginaccount" class="form-control" placeholder="輸入老師名" id="teacher_name">
+                        <input type="text" name="teacher_name" class="form-control" placeholder="輸入老師名" id="teacher_name">
                         <button type="submit" class="btn btn-outline-primary">查詢</button>
                         </form>
 
                         <form method="post2" class="login" >
-                        <label for="class_num" >老師名:</label>
-                        <input type="text" name="loginaccount" class="form-control" placeholder="輸入課程代號" id="class_num">
+                        <label for="class_num" >課程代號:</label>
+                        <input type="text" name="class_num" class="form-control" placeholder="輸入課程代號" id="class_num">
                         <button type="submit" class="btn btn-outline-primary">查詢</button>
                         </form>
 
                         <form method="post3" class="login" >
-                        <label for="class_name" >老師名:</label>
-                        <input type="text" name="loginaccount" class="form-control" placeholder="課程名" id="class_name">
+                        <label for="class_name" >課程名:</label>
+                        <input type="text" name="class_name" class="form-control" placeholder="輸入課程名" id="class_name">
                         <button type="submit" class="btn btn-outline-primary">查詢</button>
                         </form>
                         <br>
@@ -1329,7 +1329,20 @@ session_start();
                             $buttom1 = "";
                             $buttom2 = "";
                             $buttom3 = "";
-                            echo "123";
+                            echo "123456";
+                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                $teacher_name = test_input($_POST["teacher_name"]);
+                                echo $teacher_name;
+                                header("Location: http://localhost/selection.php"); 
+                                
+                            }
+                            echo $teacher_name;
+                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                $class_num = test_input($_POST["class_num"]);
+                            }
+                            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                $class_name = test_input($_POST["class_name"]);
+                            }
                             
 
 

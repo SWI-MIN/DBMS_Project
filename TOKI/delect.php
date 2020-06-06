@@ -20,6 +20,6 @@ if ($conn->query($sql_2)) {           // query() 判斷資料庫查詢是否成�
 } else {
     echo "Error";
 } 
-header("Location: http://localhost/delect.php"); 
+header("Location: http://localhost/remove.php"); 
 
 ?>
