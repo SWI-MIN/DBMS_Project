@@ -37,8 +37,7 @@ session_start();
     <!-- 我是導覽列 -->
     <nav class="navbar navbar-expand-md navbar-light bg-light p-1 fixed-top">
       <a class="navbar-brand ml-4" href="index.php" style="font-size: 40px;">逢甲</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
-          aria-expanded="false" aria-controls="myNavbar">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"  aria-expanded="false" aria-controls="myNavbar">
           <span class="navbar-toggler-icon"></span>
       </button>
 
