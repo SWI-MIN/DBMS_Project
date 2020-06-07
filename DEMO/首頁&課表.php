@@ -82,7 +82,7 @@
                 </style>
                 <br>
                 <?php
-                    include 'op&close_DB.php';
+                    include 'db_connect.php';
                     $conn = opDB();
                     $id = $_SESSION['userData'];
 

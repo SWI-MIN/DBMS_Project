@@ -248,8 +248,7 @@
 
                     <div class="col-md-6">
                         <h1 class="h2">課程查詢</h1>
-                        <!-- 查詢條件 -->
-                        <div class=""> 
+                        <!-- 查詢條件 --> 
                           <form action="searchcourse.php" method="post" class="inquire" >
                             <label for="" class="form-inline">
                                 &nbsp;&nbsp;
@@ -302,7 +301,7 @@
                         </table>
 
                     </div>
-                </div>
+
 
             </main>
         </div>

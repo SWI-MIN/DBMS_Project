@@ -7,7 +7,7 @@ function opDB()
     $user='root';      //用戶
     $pass='';          //密碼
    
-    $conn = new mysqli($host,$user,$pass,$dbName) or die("Connect failed: %s\n". $conn -> error);
+    $conn = new mysqli($host,$user,$pass,$dbName) or die("Connect failed: %s\n". $conn ->error );
     if ($conn->connect_error) {
         die("連接失敗: " . $conn->connect_error."<br>");
     } 
