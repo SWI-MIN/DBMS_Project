@@ -86,7 +86,7 @@
                     $conn = opDB();
                     $id = $_SESSION['userData'];
 
-                    $Arr=array('一','二','三','四','五','六','日');
+                    $Arr = array('一','二','三','四','五','六','日');
                     
                     $cname = array();
                     for( $i=0; $i<7; $i++ ) {
@@ -97,7 +97,15 @@
                             }    
                         }                                 
                     
-
+                    $cid = array();
+                    for( $m=0; $m<7; $m++ ) {
+                        $w = $Arr[$m];
+                        $cid[$w] = array();                     
+                        for($n = 1; $n < 15; $n++ ) { 
+                            $cid[$w][$n] = "" ;
+                            }    
+                        } 
+                    
 
                     $sql_1 = "SELECT courseid FROM choosing WHERE stuid=\"$id\"";
                     if ($result1 = $conn->query($sql_1)) {
@@ -118,6 +126,7 @@
                                             //$period[(int)$row2["period"]] = $course_name["coursename"];
                                             //echo "hiii".$period[(int)$row2["period"]]."<br>";
                                             $cname[$row2["week"]][(int)$row2["period"]] = $course_name["coursename"];
+                                            $cid[$row2["week"]][(int)$row2["period"]] = $row2["courseid"];
                                         }    
                                     }
                                        
@@ -147,8 +156,8 @@
                                 for( $k = 1; $k <15; $k++) {
                                     echo "<tr><th>第".$k."節</th>";
                                     foreach( $cname as $tabwek => $tabpe ){
-                                            echo "<td>".$tabpe[$k]."</td>";
-                                    }                                     
+                                            echo "<td>".$tabpe[$k]."<br>".$cid[$tabwek][$k]."</td>";;
+                                    }                                  
                                     echo "</tr>";
                                 }
                                     
