@@ -182,8 +182,9 @@
                                 <input type="text" name="courseid" class="form-control" placeholder="課程代號" style="width: 75%;">
                                 
                                 <br>
-                          <button type="submit" class="btn btn-primary" id="searchBtn">查詢</button>    
+                          <button type="submit" class="btn btn-primary" id="searchBtn">查詢</button>   
                           </form>
+                          <br><br>  
                           
                             
 
@@ -226,7 +227,7 @@
                                 if( $courseid =="" || mb_strlen( $courseid, "utf-8")!=4){
                                     echo "<script type='text/javascript'>confirm(\"輸入值數量不對\")</script>"."<br>";
                                 } else if($courseid !="" && mb_strlen( $courseid, "utf-8")==4){
-                                    echo $courseid."<br>";
+                                    echo "";
                                     $sql0 = "SELECT maxstu,coursestu,courseunits,coursename FROM `departcourse` NATURAL JOIN `courseinfo` where courseid = \"$courseid\";";
                                     if ($stunum = mysqli_query($conn,$sql0)) {
                                         if (mysqli_num_rows($stunum) > 0) {   
@@ -235,7 +236,7 @@
                                                     $unit = $number["courseunits"];
                                                     $choname = $number["coursename"];
                                                     $sq1 ="UPDATE courseinfo SET coursestu = (coursestu + 1) WHERE courseid = \"$courseid\";";
-                                                    $sq2 ="INSERT INTO choosing(stuid,courseid) VALUES($id,$courseid);";
+                                                    $sq2 ="INSERT INTO choosing(stuid,courseid) VALUES('$id','$courseid');";
                                                     $sq3 = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo WHERE stuid = \"$id\";"; 
                                                     $sq4 = "SELECT stuid,courseid,coursename FROM (students NATURAL JOIN choosing ) NATURAL JOIN departcourse  WHERE stuid = \"$id\";";
 
@@ -244,47 +245,40 @@
                                                         if (mysqli_num_rows($cnamenum) > 0) {
                                                             while ( $course = mysqli_fetch_assoc($cnamenum) ) {
                                                                 if ( $choname == $course["coursename"] ) {
-                                                                    echo '<script>alert("!不能選相同名稱的課程!");history.go(-1);</script>';
+                                                                    echo '<script>history.back(-1);confirm("!不能選相同名稱的課程!");</script>';
                                                                 } 
                                                             } 
                                                                 if($stusum = $conn->query($sq3)) {
-                                                                    sum = mysqli_fetch_assoc($stusum);
+                                                                    $sum = mysqli_fetch_assoc($stusum);
                                                                                                                                 
-                                                                    if( 30 - $stusum["SUM(courseunits)"] < $unit ) {
+                                                                    if( 30 - $sum["SUM(courseunits)"] < $unit ) {
                                                                         echo "<script type='text/javascript'>confirm(\"總學分不能高於 30 學分 !\")</script>"; 
             
                                                                     } else {
                                                                         if ($conn->query($sq2)) {
                                                                             if ($conn->query($sq1)) {
-                                                                                echo "<script type='text/javascript'>confirm(\"成功加選課程\")</script>";
+                                                                                echo "<script type='text/javascript'>confirm(\"成功加選課程\");location.reload();</script>";
+                                                                                header("Location: ./查詢&加選.php");
                                                                             } else {
                                                                                 echo "<script type='text/javascript'>confirm(\"更新人數錯誤\")</script>";
                                                                                 if($conn->query($sq2)){} else { echo "<script type='text/javascript'>confirm(\"新增choosing錯誤\")</script>"; }
                                                                             }
-                                                                        } else { echo "<script type='text/javascript'>confirm(\"新增choosing錯誤(外)\")</script>"; }
+                                                                        } else { echo "<script type='text/javascript'>confirm(\"新增choosing錯誤(外)\")</script>"; 
+                                                                            echo $id." ".$courseid." ". $conn->error ."<br>";
+                                                                        }
                                                                     }
                                                                 } else {
                                                                     echo "<script type='text/javascript'>confirm(\"沒有總學分的查詢\")</script>";   }
-                                                                                                                        
-
-                                                        }
-
-                                                         
-
+                                                              }
                                                     }
                                                  } else {
                                                     echo "<script type='text/javascript'>confirm(\"人數已滿之課程不可加選\")</script>";// 前方的error相當於 mysql_error();，用於回傳錯誤訊息
                                                 }
                                             }
                                         }
-
-
-                                    } else {
-
-                                        echo "<script type='text/javascript'>confirm(\"沒有這個 id\n\")</script>" . $conn->error . "<br>";
+                                     } else {
+                                         echo "<script type='text/javascript'>confirm(\"沒有這個 id\n\")</script>" . $conn->error . "<br>";
                                     }
-
-
                                 } else {
                                     echo "加選字串判斷錯誤<br>";
                                 }
@@ -292,7 +286,33 @@
                                 
                                 
                                 }
+                                /*
 
+                                $sql_cho = "SELECT week,period FROM coursetime NATURAL JOIN choosing WHERE stuid = \"$id\";";
+                                $sql_chen = "SELECT week,period FROM coursetime WHERE courseid = '1323';";
+                                $count = 0;
+                                if ($result_cho = $conn->query($sql_cho)){
+                                while($cho = $result_cho->fetch_assoc()) {
+                                        $week =$cho['week'];
+                                        $period = $cho['period'];
+                                        if ($result_chen = $conn->query($sql_chen)){
+                                            while($chen = $result_chen->fetch_assoc()) {
+                                                $chen_week = $chen['week'];
+                                                $chen_period = $chen['period'];
+                                                if ($week==$chen_week && $period==$chen_period)
+                                                {
+                                                    echo "<script type='text/javascript'>confirm(\"衝堂\")</script>";
+                                                }
+                                                else{
+                                                    // echo "不衝堂";
+                                                }
+                                            }
+                                        }
+                                    }
+                                } else {
+                                echo "Error: " . "<br>" . $conn->error;
+                                }
+                                */
                             
                               ?>
                               
