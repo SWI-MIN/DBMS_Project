@@ -218,8 +218,6 @@
                             </tbody>
 
                             <?php
-                                
-
                               if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 $courseid = trim($_POST["courseid"]);
                                 

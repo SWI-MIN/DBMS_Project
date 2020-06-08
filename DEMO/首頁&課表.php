@@ -58,7 +58,7 @@
             </ul>
             <hr>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-2">
-              <form action="logout.php" method="get">
+              <form action="logout.php" method="POST">
                  <input action type="submit" name="logout" value="登出">
               </form>
             </ul>

@@ -25,6 +25,7 @@
                 echo '<script>alert("沒有這門課喔!!");history.go(-1);</script>';
             } else {
                 // 這裡要印出資料喔!!!
+                echo '<script>alert("888888888");history.go(-1);</script>';
             }
         }  
     } else if (isset($_POST["b_courseid"])) {
@@ -41,6 +42,7 @@
                 echo '<script>alert("沒有這門課喔!!");history.go(-1);</script>';
             } else {
                 // 這裡要印出資料喔!!!
+                echo '<script>alert("1221323213213");history.go(-1);</script>';
             }
         }  
     } else if (isset($_POST["b_coursename"])) { 
@@ -57,6 +59,7 @@
                 echo '<script>alert("沒有這門課喔!!");history.go(-1);</script>';
             } else {
                 // 這裡要印出資料喔!!!
+                echo '<script>alert("15649999999999"");history.go(-1);</script>';
             }
         }  
     } else {  

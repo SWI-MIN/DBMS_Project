@@ -59,7 +59,7 @@
             <hr>
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0 mr-2">
                 
-              <form name="login" action="logout.php" method="post">
+              <form name="logout" action="logout.php" method="post">
                 <input action type="submit" name="logout" value="logout">
              </form>
               
@@ -172,11 +172,13 @@
       
                           </table>
                         </div>
-                    <div class="col-md-6">
-                      <h1 class="h2">當前課表</h1>
-
-                      <!-- 顯示出的表格 -->
-                      <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
+                        <div class="col-md-6">
+                        <h1 class="h2">已選課程</h1>
+                        <!-- 查詢條件 -->
+                        
+                       
+                        <!-- 顯示出的表格 -->
+                        <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
                             <thead>
                               <tr class="thead-light">
                                 <th style="width:16%;">課程代號</th>
@@ -190,33 +192,89 @@
                             </thead>
                             
                             <tbody>
+                            
+                            <!-- ==================================================  我是分隔線  ==================================================  -->
+                            <?php 
+                            // // $id;
+                            // $conn = opDB();
+                            // $id = $_SESSION['userData'];
+                            // $j = 1;
+                            // echo $id;
+                            // // echo "<br>";
+                            // for ($j=1;$j<=30;$j++)
+                            // {
+                            //     $course[$j]="";
+                            // }
+                            // $j = 1;
+                            // $sql_4 = "SELECT courseid FROM choosing WHERE stuid=\"$id\"";
+                            // if ($result4 = $conn->query($sql_4)) {
+                            //     while($row4 = $result4->fetch_assoc()) {
+                            //         // echo "<br>==================<br>";
+                            //         // echo $row4["courseid"];
+                            //         // echo "<br>==================<br>";
+                            //         $course[$j] = $row4["courseid"];
+                            //         $j = $j + 1 ;
+                            //         // echo $course[$j];
+                            //     }
+                            // }
+                            // $j = 1;
+                            // for ($j=1;$j<=30;$j++) {
+                            //     if ($course[$j]!=null) {
+                            //         echo "<br>";
+                            //         echo $course[$j];
+                            //     }
+                            // }
+
+                            
+                            ?>
+                            <!-- ==================================================  我是分隔線  ==================================================  -->
 
                               <?php
-                                $conn = opDB();
-
+                                // include 'function1.php';
+                                $connn = opDB();
+                                // for($i=0 ; $i<=30 ; $i++){
+                                //     $data1[$i] =""; 
+                                //     $data2[$i] =""; 
+                                //     $data3[$i] =""; 
+                                //     $data4[$i] =""; 
+                                //     $data5[$i] =""; 
+                                // }
                                 $sum = 0;
-                                $sum_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo WHERE stuid=\"$id\";";
-                                if ($result6 = $conn->query($sum_units)) {
+                                $sun_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo WHERE stuid=\"$id\";";
+                                if ($result6 = $conn->query($sun_units)) {
                                     while($row6 = $result6->fetch_assoc()) {
                                         $sum = $row6["SUM(courseunits)"];
                                     }
-                                     echo "當前總學分 ".$sum." 學分";
+                                    // echo $sum;
                                 }
+                                
                                 
                                 // $countsql = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo WHERE stuid=\"$id\" GROUP BY coursenuits
 
+                                $id = $_SESSION['userData'];
+                                echo "學生：";
+                                echo $id;
+                                echo "   目前學分數： ";
+                                echo $sum;
                                 $sql_4 = "SELECT courseid FROM choosing WHERE stuid=\"$id\"";
                                 if ($result4 = $conn->query($sql_4)) {
+                                    // output data of each row
+                                    // $a = 0;
                                     while($row4 = $result4->fetch_assoc()) {
+                                        // echo "<br>";
+                                        // echo "<br>";
+                                        // echo $row4["courseid"];
+                                        
                                         $cor_id = $row4["courseid"];
                                         $sql_5 = "SELECT  courseid, teachername, coursename, needed, courseunits FROM DepartCourse NATURAL JOIN courseinfo WHERE courseid= \"$cor_id\" ;";
-                                        
+                                        // echo $cor_id;       
                                         if ($result5 = $conn->query($sql_5)) {
                                             $textxxx = "";
                                             while($row5 = $result5->fetch_assoc()) 
                                             {
                                                 if ($row5["courseid"]!=$textxxx) {
                                                 $data1 = $row5["courseid"];
+                                                // echo $data1;
                                                 $textxxx = $data1;
                                                 $data2 = $row5["teachername"];
                                                 $data3 = $row5["coursename"];
@@ -225,21 +283,28 @@
                                                 
                                                 $sql_7 = "SELECT courseunits FROM courseinfo  WHERE courseid = \"$data1\"   ";
                                                 if ($result7 = $conn->query($sql_7)) {
-                                                    if($row7 = $result7->fetch_assoc()) {
+                                                    
+                                                    while($row7 = $result7->fetch_assoc()) {
                                                         $chose_count = $row7["courseunits"];
                                                     }
-                                                    // echo $chose_count;                                                   
+                                                    // echo $chose_count;
+                                                    
                                                 }
-
                                                 $text123 = "1";
                                                 $a_dep_01 = "SELECT stuid, courseid, studepart, stufloor, coursedepart, coursefloor, needed
                                                     FROM (students NATURAL JOIN choosing ) NATURAL JOIN departcourse 
                                                     WHERE stuid = '$id' AND courseid = '$data1' 
                                                     AND studepart = coursedepart AND stufloor = coursefloor AND needed = 'M';";
                                                 if ($result7 = $conn->query($a_dep_01)) {
-                                                    if($row7 = $result7->fetch_assoc()) {
+                                                    while($row7 = $result7->fetch_assoc()) {
+                                                        
                                                         $text123 = "123";
-                                                    }         
+                                                        // echo $text123;
+
+                                                        
+                                                        
+                                                    } 
+                                                        
                                                 }
                                                     
                                                 
@@ -251,8 +316,18 @@
                                                 <td><?php echo $data4;?></td>
                                                 <td><?php echo $data5;?></td>
                                                 <td> 
+                                                <!-- <script>
+                                                function express(){
+                                                var value="abc";
+                                                var a123="123";
+                                                location.href="print.php?value=" +value+a123;
+                                                history.go(0);
+                                                }
+                                                </script>
+                                                <input type="button" value="button" onclick="express()"> -->
                                                 <button  type="submit" onclick="btn_click(<?php echo $data1; ?>,<?php echo $chose_count; ?>,<?php echo $text123; ?>)"  class="btn btn-danger btn-sm" >
                                                     退選
+                                                
                                                 </button>
 
                                                 </td>
@@ -260,57 +335,117 @@
                                                 </tr>
 
                                                 <?php 
-                                                }
-                                            
                                             }
+                                            
+                                        }
                                         }
                                     }
                                 }
+
+
+                                //==============================================================
+                                
+                                
+                                // $dbms='mysql';     
+                                // $host='localhost'; 
+                                // $dbName='dbms_project';    
+                                // $user='root';      
+                                // $pass='';          
+                                // $dsn="$dbms:host=$host;dbname=$dbName";
+                                // $conn = new PDO($dsn, $user, $pass, array(PDO::ATTR_PERSISTENT => true));
+                                // $id = $_SESSION['userData'];
+                                // $sun_units = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo
+                                // WHERE stuid=\"$id\"  GROUP BY courseunits;";
+                                // $aa = $conn->query($sun_units);
+                                // $value_1 = $aa->fetch();
+                                // // echo "$value_1[0]";
+                                // $a_llunits = "SELECT courseunits FROM choosing NATURAL JOIN courseinfo WHERE courseid='1318'";
+                                // $bb= $conn->query($a_llunits);
+                                // $value_2 = $bb->fetch();
+                                // // echo "$value_2[0]";
+
+                                // //==============================================================
+                                // $count = $value_1[0] - $value_2[0];
+                                // echo $count;
+                                
                                 ?>
-                                                                
+
+                                <!-- <script language="javascript">
+                                function btn_click(x,y,z) {
+                                    var id="<?php echo $id; ?>";
+                                    var course = x;
+                                    var sum="<?php echo $sum; ?>";
+                                    var faQ=y;
+                                    
+                                    
+                                    
+                                    var needed = z;
+                                    if (sum - faQ <9 || sum - faQ >30) {
+                                        alert("分數會低於九學分! 不能退選喔");
+                                    }
+                                    else {
+                                        if (needed==123){
+                                            var r=confirm("這是必修，你確定要退??")
+                                            if (r==true){
+                                                alert("假裝你成功退選嘞");
+
+                                                history.go(-1);
+                                            } else {
+                                                
+                                            }
+                                        }
+                                        else{
+                                            alert("這不是必選");
+                                        }
+                                        
+                                        
+                                    }
+                                
+                                // 　alert(y);
+                                
+                                }
+                                </script> -->
+                                
                             </tbody>
                             
                         </table>
 
                     </div>
+                    
                 </div>
+    <script language="javascript">
+    function btn_click(x,y,z) {
+        var id="<?php echo $id; ?>";
+        var course = x;
+        var sum="<?php echo $sum; ?>";
+        var units=y;
 
-            </main>
-                  
-        </div>
-    </div>
+        var needed = z;
+        if ( sum - units < 9 ) {
+        alert("總學分會低於九學分! 不能退選喔");
+        }
+        else {
+            if ( needed == 123){
+            var r=confirm("這是必修，你確定要退??")
+                if ( r == true){
+                location.href="delect.php?value="+ course;
+                
+                // history.go(-1);
+                } 
+            }  else {
+            location.href="delect.php?value="+ course;
+            // history.go(0);
+            }
+                                                    
+        }
+                                            
+        // 　alert(y);
+                                            
+    }
+    </script>
 </body>
 </html>
 
-            <script language="javascript">
-            function btn_click(x,y,z) {
-                var id="<?php echo $id; ?>";
-                var course = x;
-                var sum="<?php echo $sum; ?>";
-                var units=y;
-
-                var needed = z;
-                if ( sum - units < 9 ) {
-                alert("總學分會低於九學分! 不能退選喔");
-                }
-                else {
-                    if ( needed == 123){
-                    var r=confirm("這是必修，你確定要退??")
-                        if ( r == true){
-                        location.href="delect.php?value="+ course;
-                          
-                        // history.go(-1);
-                        } 
-                    }  else {
-                    location.href="delect.php?value="+ course;
-                    // history.go(0);
-                    }
-                                                             
-                }
-                                                    
-                // 　alert(y);
-                                                    
-            }
-            </script>
+            
 
            
