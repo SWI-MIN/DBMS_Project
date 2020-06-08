@@ -83,210 +83,192 @@
                                 font-family: Microsoft JhengHei, Arial;
                             }
                         </style>
-                        <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
-                            
-                            <thead>
-                              <tr class="thead-dark">
-                                <th style="width:50px;"></th>
-                                <th>一</th>
-                                <th>二</th>
-                                <th>三</th>
-                                <th>四</th>
-                                <th>五</th>
-                                <th>六</th>
-                                <th>日</th>
-                              </tr>
-                            </thead>
-                            
-                            <tbody>
-                              <tr>
-                                <th>1</th>
-                                <td>Bangalore</td>
-                                <td>560001</td>
-                                <td>Tanmay</td>
-                                <td>Bangalore</td>
-                                <td>560001</td>
-                                <td>Tanmay</td>
-                                <td>Bangalore</td>
-                              </tr>
-                              <tr>
-                                <th>2</th>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                              </tr>
-                              <tr>
-                                <th>3</th>
-                                <td>Pune</td>
-                                <td>411027</td>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                                <td>411027</td>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                              </tr>
-                              <tr>
-                                <th>4</th>
-                                <td>Bangalore</td>
-                                <td>560001</td>
-                                <td>Tanmay</td>
-                                <td>Bangalore</td>
-                                <td>560001</td>
-                                <td>Tanmay</td>
-                                <td>Bangalore</td>
-                              </tr>
-                              <tr>
-                                <th>5</th>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                              </tr>
-                              <tr>
-                                <th>6</th>
-                                <td>Pune</td>
-                                <td>411027</td>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                                <td>411027</td>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                              </tr>
-                              <tr>
-                                <th>7</th>
-                                <td>Bangalore</td>
-                                <td>560001</td>
-                                <td>Tanmay</td>
-                                <td>Bangalore</td>
-                                <td>560001</td>
-                                <td>Tanmay</td>
-                                <td>Bangalore</td>
-                              </tr>
-                              <tr>
-                                <th>8</th>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                              </tr>
-                              <tr>
-                                <th>9</th>
-                                <td>Pune</td>
-                                <td>411027</td>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                                <td>411027</td>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                              </tr>
-                              <tr>
-                                <th>10</th>
-                                <td>Bangalore</td>
-                                <td>560001</td>
-                                <td>Tanmay</td>
-                                <td>Bangalore</td>
-                                <td>560001</td>
-                                <td>Tanmay</td>
-                                <td>Bangalore</td>
-                              </tr>
-                              <tr>
-                                <th>11</th>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                              </tr>
-                              <tr>
-                                <th>12</th>
-                                <td>Pune</td>
-                                <td>411027</td>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                                <td>411027</td>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                              </tr>
-                              <tr>
-                                <th>13</th>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                                <td>400003</td>
-                                <td>Sachin</td>
-                                <td>Mumbai</td>
-                              </tr>
-                              <tr>
-                                <th>14</th>
-                                <td>Pune</td>
-                                <td>411027</td>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                                <td>411027</td>
-                                <td>Uma</td>
-                                <td>Pune</td>
-                              </tr>
-                            </tbody>
-        
+                        <?php
+                          include 'db_connect.php';
+                          $conn = opDB();
+                          $id = $_SESSION['userData'];
+
+                          $Arr = array('一','二','三','四','五','六','日');
+                          
+                          $cname = array();
+                          for( $i=0; $i<7; $i++ ) {
+                              $wek = $Arr[$i];
+                              $cname[$wek] = array();                     
+                                  for($j = 1; $j < 15; $j++ ) { 
+                                      $cname[$wek][$j] = "" ;
+                                  }    
+                              }                                 
+                          
+                          $cid = array();
+                          for( $m=0; $m<7; $m++ ) {
+                              $w = $Arr[$m];
+                              $cid[$w] = array();                     
+                              for($n = 1; $n < 15; $n++ ) { 
+                                  $cid[$w][$n] = "" ;
+                                  }    
+                              } 
+                          
+      
+                          $sql_1 = "SELECT courseid FROM choosing WHERE stuid=\"$id\"";
+                          if ($result1 = $conn->query($sql_1)) {
+                              while($row = $result1->fetch_assoc()) {
+      
+                                  $text = $row["courseid"];
+                                  $sql_2 = "SELECT `courseid`,`week`,`period` FROM `courseTime` WHERE courseid=\"$text\"";
+                                  $sql_3 = "SELECT `coursename` FROM `departCourse` WHERE courseid=\"$text\"";
+                                  $result3 = $conn->query($sql_3);
+                                  $course_name = $result3->fetch_assoc();
+      
+                                  if ($result2 = $conn->query($sql_2)) {
+                                      
+                                      while($row2 = $result2->fetch_assoc()) {
+                                      //    echo $row2["week"].$row2["period"].gettype($row2["week"]).gettype($row2["period"])."<br>";
+                                          foreach( $cname as $week  => $period ) {
+                                              if( $row2["week"] == $week ) {
+                                                  //$period[(int)$row2["period"]] = $course_name["coursename"];
+                                                  //echo "hiii".$period[(int)$row2["period"]]."<br>";
+                                                  $cname[$row2["week"]][(int)$row2["period"]] = $course_name["coursename"];
+                                                  $cid[$row2["week"]][(int)$row2["period"]] = $row2["courseid"];
+                                              }    
+                                          }
+                                             
+                                      }
+                                  } 
+                              }
+                          }
+      
+                          ?>
+                          <table style="margin-right: auto; margin-left: auto;" id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
+                          
+                              <thead>
+                                  <tr class="thead-dark">
+                                      <th style="width:75px;"></th>
+                                      <th>一</th>
+                                      <th>二</th>
+                                      <th>三</th>
+                                      <th>四</th>
+                                      <th>五</th>
+                                      <th>六</th>
+                                      <th>日</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <?php   
+                                  
+                                      for( $k = 1; $k <15; $k++) {
+                                          echo "<tr><th>第".$k."節</th>";
+                                          foreach( $cname as $tabwek => $tabpe ){
+                                                  echo "<td>".$tabpe[$k]."<br>".$cid[$tabwek][$k]."</td>";;
+                                          }                                  
+                                          echo "</tr>";
+                                      }
+                                          
+                                  ?>
+                                  
+                              </tbody>
+      
                           </table>
-                    </div>
+                  </div>
 
 <!-- ==================================================  我是分隔線  ==================================================  -->
 
                     <div class="col-md-6">
                         <h1 class="h2">課程查詢</h1>
                         <!-- 查詢條件 --> 
-                          <form action="searchcourse.php" method="post" class="inquire" >
-                            <label for="" class="form-inline">
+                          <form method="post" class="inquire" >
+
                                 &nbsp;&nbsp;
-                                <input type="text" name="teachername" class="form-control" placeholder="老師姓名" style="width: 75%;">&nbsp;
-                                <button type="submit" name="b_teachername" class="btn btn-primary" id="searchBtn">查詢</button>
-                            </label>
+                                <label for="" class="form-inline">課程代號</label>
+                                <input type="text" name="courseid" class="form-control" placeholder="課程代號" style="width: 75%;">
+                                
+                                <br>
+                          <button type="submit" class="btn btn-primary" id="searchBtn">查詢</button>    
                           </form>
-                          <form action="searchcourse.php" method="post" class="inquire" >
-                            <label for="" class="form-inline">
-                                &nbsp;&nbsp;
-                                <input type="text" name="courseid" class="form-control" placeholder="課程代號" style="width: 75%;">&nbsp;
-                                <button type="submit" name="b_courseid" class="btn btn-primary" id="searchBtn">查詢</button> 
-                            </label>
-                          </form>
-                          <form action="searchcourse.php" method="post" class="inquire" >
-                            <label for="" class="form-inline">
-                                &nbsp;&nbsp;
-                                <input type="text" name="coursename" class="form-control" placeholder="課程名稱" style="width: 75%;">&nbsp;
-                                <button type="submit" name="b_coursename" class="btn btn-primary" id="searchBtn">查詢</button>
-                            </label>
-                          </form>
-                        </div> 
+                          
+                            
 
                         <!-- 顯示出的表格 -->
-                        <table id="contentTable" class="table table-hover table-bordered table-condensed text-center" >
+                        <table style="width:90%;" id="contentTable" class="table table-hover table-bordered table-condensed text-center"  >
                             <thead>
-                              <tr class="thead-light">
-                                <th style="width:16%;">課程代號</th>
-                                <th style="width:15%;">老師</th>
-                                <th style="width:25%;">課程名稱</th>
-                                <th style="width:12%;">必選修</th>
-                                <th style="width:12%;">學分數</th>
+                              <tr class="thead-light" >
+                                <th style="width:20%;">課程代號</th>
+                                <th style="width:20%;">老師</th>
+                                <th style="width:30%;">課程名稱</th>
+                                <th style="width:10%;">必選修</th>
+                                <th style="width:10%;">學分數</th>
 
-                                <th style="width:65px;"></th>
+                                <th style="width:80px;"></th>
                               </tr>
                             </thead>
                             
                             <tbody>
+                            <?php
+                                
+
+                              if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                $courseid = trim($_POST["courseid"]);
+                                
+                                if( $courseid =="" || mb_strlen( $courseid, "utf-8")!=4){
+                                    echo "<script type='text/javascript'>confirm(\"輸入值數量不對\")</script>"."<br>";
+                                } else if($courseid !="" && mb_strlen( $courseid, "utf-8")==4){
+                                    echo "<br>";
+                                    $sql0 = "select maxstu,coursestu FROM `courseinfo` where courseid = \"$courseid\";"
+                                    if ($stunum = mysqli_query($connquery($sql0)) {
+                                        if (mysqli_num_rows($stunum) > 0) {   
+                                            while($number= mysqli_fetch_assoc($stunum)){    // 印出每一個符合條件的 "課程代號"，並將 "學生ID" & "課程代號" 加入 choosing 表中
+                                                if ($number["maxstu"] > ($number["coursestu"]+1) || $number["maxstu"] == ($number["coursestu"]+1) ) {
+                                                    $sq1 ="UPDATE courseinfo SET coursestu = (coursestu + 1) WHERE courseid = \"$course\";";
+                                                    $sq2 ="INSERT INTO choosing(stuid,courseid) VALUES($id,$courseid);";
+                                                    if ($conn->query($sq1)) {
+                                                        if ($conn->query($sq2)) { 
+                                                            
+                                                        } else { echo "<script type='text/javascript'>confirm(\"更新人數錯誤\")</script>"; } 
+                                                
+                                                        } else {
+                                                        echo "<script type='text/javascript'>confirm(\"更新人數錯誤\")</script>";
+                                                        if($conn->query($sq2)){} else { echo "<script type='text/javascript'>confirm(\"新增課程錯誤\")</script>"; }
+                                                    } 
+
+                                                } else {
+                                                    echo "<script type='text/javascript'>confirm(\"人數已滿之課程不可加選\")</script>";// 前方的error相當於 mysql_error();，用於回傳錯誤訊息
+                                                }
+                                            }
+
+
+                                    } else {
+
+                                        echo "<script type='text/javascript'>confirm(\"沒有這個 id\n\")</script>" . $conn->error . "<br>";
+                                    }
+
+
+                                } else {
+                                    echo "hii<br>";
+                                }
+
+                                
+                                
+                                }
+/*
+                                $sq1 ="UPDATE courseinfo SET coursestu = (coursestu + 1) WHERE courseid = \"$course\";";
+
+                                $sq2 ="INSERT INTO choosing(stuid,courseid) VALUES($id,$courseid);";
+
+                                if ($conn->query($sql_2)) {
+                                    if ($conn->query($sql_1)) { 
+                                        echo "<script type='text/javascript'>";
+                                        echo "window.location.href='查詢&退選.php'";
+                                        echo "</script>"; 
+                                    } else {
+                                        echo "人數更新 Error"."<br>"; } 
+
+                                } else {
+                                    echo "DELETE Error"."<br>";
+                                    if($conn->query($sql_1)){} else { echo "人數更新 Error"."<br>"; }
+                                } 
+
+                            } */
+                            
+                              ?>
                               <tr>
                                 <td>09487</td>
                                 <td>BBTIME</td>
@@ -295,10 +277,10 @@
                                 <td>2</td>
                                 <td><form action="opt_out.php"><button type="submit" class="btn btn-success btn-sm" id="searchBtn">加選</button></form></td>
                               </tr>
-                              
                             </tbody>
                             
                         </table>
+                        </div>
 
                     </div>
 

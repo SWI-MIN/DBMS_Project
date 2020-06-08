@@ -283,38 +283,34 @@
 </html>
 
             <script language="javascript">
-                function btn_click(x,y,z) {
+            function btn_click(x,y,z) {
                 var id="<?php echo $id; ?>";
                 var course = x;
                 var sum="<?php echo $sum; ?>";
                 var units=y;
 
                 var needed = z;
-                if (sum - units < 9 ) {
+                if ( sum - units < 9 ) {
                 alert("總學分會低於九學分! 不能退選喔");
                 }
                 else {
-                    if (needed == 123){
+                    if ( needed == 123){
                     var r=confirm("這是必修，你確定要退??")
-                        if (r==true){
+                        if ( r == true){
                         location.href="delect.php?value="+ course;
                           
                         // history.go(-1);
-                        } else {
-                                                                    
-                        }
-                    }
-                    else{
+                        } 
+                    }  else {
                     location.href="delect.php?value="+ course;
                     // history.go(0);
                     }
-                                                            
-                                                            
+                                                             
                 }
                                                     
                 // 　alert(y);
                                                     
-                }
+            }
             </script>
 
            

@@ -32,8 +32,8 @@
 
     $subject= "SELECT * FROM departcourse WHERE coursedepart = '$_POST[studepart]' 
             AND	coursefloor = '$_POST[stufloor]' AND courseclass = '$_POST[stuclass]' AND needed = 'M'";// 搜尋"系所課程"這張表中，符合 "課程系所","課程年級","班級","必選修"
-    if($result = mysqli_query($conn, $subject)){
-        if (mysqli_num_rows($result) > 0) {   // 如果有值
+    if($result = mysqli_query($conn, $subject)){ // 如果有值
+        if (mysqli_num_rows($result) > 0) {   
             while($number= mysqli_fetch_assoc($result)){    // 印出每一個符合條件的 "課程代號"，並將 "學生ID" & "課程代號" 加入 choosing 表中
                 if ($number["coursedepart"] == $studepart && $number["coursefloor"] ==  $stufloor  && $number["courseclass"] ==  $stuclass) {
                     echo $number["courseid"];       // 印出符合條件的 "課程代號"
