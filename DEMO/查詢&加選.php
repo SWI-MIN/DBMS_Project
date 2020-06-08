@@ -203,6 +203,21 @@
                             
                             <tbody>
                             <?php
+
+
+
+                            ?>
+                            <tr>
+                                <td>09487</td>
+                                <td>BBTIME</td>
+                                <td>週四10:00~12:00</td>
+                                <td>必</td>
+                                <td>2</td>
+                                <td><form action="opt_out.php"><button type="submit" class="btn btn-success btn-sm" id="searchBtn">加選</button></form></td>
+                            </tr>
+                            </tbody>
+
+                            <?php
                                 
 
                               if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -211,28 +226,57 @@
                                 if( $courseid =="" || mb_strlen( $courseid, "utf-8")!=4){
                                     echo "<script type='text/javascript'>confirm(\"輸入值數量不對\")</script>"."<br>";
                                 } else if($courseid !="" && mb_strlen( $courseid, "utf-8")==4){
-                                    echo "<br>";
-                                    $sql0 = "select maxstu,coursestu FROM `courseinfo` where courseid = \"$courseid\";"
-                                    if ($stunum = mysqli_query($connquery($sql0)) {
+                                    echo $courseid."<br>";
+                                    $sql0 = "SELECT maxstu,coursestu,courseunits,coursename FROM `departcourse` NATURAL JOIN `courseinfo` where courseid = \"$courseid\";";
+                                    if ($stunum = mysqli_query($conn,$sql0)) {
                                         if (mysqli_num_rows($stunum) > 0) {   
                                             while($number= mysqli_fetch_assoc($stunum)){    // 印出每一個符合條件的 "課程代號"，並將 "學生ID" & "課程代號" 加入 choosing 表中
                                                 if ($number["maxstu"] > ($number["coursestu"]+1) || $number["maxstu"] == ($number["coursestu"]+1) ) {
-                                                    $sq1 ="UPDATE courseinfo SET coursestu = (coursestu + 1) WHERE courseid = \"$course\";";
+                                                    $unit = $number["courseunits"];
+                                                    $choname = $number["coursename"];
+                                                    $sq1 ="UPDATE courseinfo SET coursestu = (coursestu + 1) WHERE courseid = \"$courseid\";";
                                                     $sq2 ="INSERT INTO choosing(stuid,courseid) VALUES($id,$courseid);";
-                                                    if ($conn->query($sq1)) {
-                                                        if ($conn->query($sq2)) { 
-                                                            
-                                                        } else { echo "<script type='text/javascript'>confirm(\"更新人數錯誤\")</script>"; } 
-                                                
-                                                        } else {
-                                                        echo "<script type='text/javascript'>confirm(\"更新人數錯誤\")</script>";
-                                                        if($conn->query($sq2)){} else { echo "<script type='text/javascript'>confirm(\"新增課程錯誤\")</script>"; }
-                                                    } 
+                                                    $sq3 = "SELECT SUM(courseunits) FROM choosing NATURAL JOIN courseinfo WHERE stuid = \"$id\";"; 
+                                                    $sq4 = "SELECT stuid,courseid,coursename FROM (students NATURAL JOIN choosing ) NATURAL JOIN departcourse  WHERE stuid = \"$id\";";
 
-                                                } else {
+                                                    
+                                                    if ( $cnamenum = mysqli_query($conn,$sq4) ) {
+                                                        if (mysqli_num_rows($cnamenum) > 0) {
+                                                            while ( $course = mysqli_fetch_assoc($cnamenum) ) {
+                                                                if ( $choname == $course["coursename"] ) {
+                                                                    echo '<script>alert("!不能選相同名稱的課程!");history.go(-1);</script>';
+                                                                } 
+                                                            } 
+                                                                if($stusum = $conn->query($sq3)) {
+                                                                    sum = mysqli_fetch_assoc($stusum);
+                                                                                                                                
+                                                                    if( 30 - $stusum["SUM(courseunits)"] < $unit ) {
+                                                                        echo "<script type='text/javascript'>confirm(\"總學分不能高於 30 學分 !\")</script>"; 
+            
+                                                                    } else {
+                                                                        if ($conn->query($sq2)) {
+                                                                            if ($conn->query($sq1)) {
+                                                                                echo "<script type='text/javascript'>confirm(\"成功加選課程\")</script>";
+                                                                            } else {
+                                                                                echo "<script type='text/javascript'>confirm(\"更新人數錯誤\")</script>";
+                                                                                if($conn->query($sq2)){} else { echo "<script type='text/javascript'>confirm(\"新增choosing錯誤\")</script>"; }
+                                                                            }
+                                                                        } else { echo "<script type='text/javascript'>confirm(\"新增choosing錯誤(外)\")</script>"; }
+                                                                    }
+                                                                } else {
+                                                                    echo "<script type='text/javascript'>confirm(\"沒有總學分的查詢\")</script>";   }
+                                                                                                                        
+
+                                                        }
+
+                                                         
+
+                                                    }
+                                                 } else {
                                                     echo "<script type='text/javascript'>confirm(\"人數已滿之課程不可加選\")</script>";// 前方的error相當於 mysql_error();，用於回傳錯誤訊息
                                                 }
                                             }
+                                        }
 
 
                                     } else {
@@ -242,42 +286,16 @@
 
 
                                 } else {
-                                    echo "hii<br>";
+                                    echo "加選字串判斷錯誤<br>";
                                 }
 
                                 
                                 
                                 }
-/*
-                                $sq1 ="UPDATE courseinfo SET coursestu = (coursestu + 1) WHERE courseid = \"$course\";";
 
-                                $sq2 ="INSERT INTO choosing(stuid,courseid) VALUES($id,$courseid);";
-
-                                if ($conn->query($sql_2)) {
-                                    if ($conn->query($sql_1)) { 
-                                        echo "<script type='text/javascript'>";
-                                        echo "window.location.href='查詢&退選.php'";
-                                        echo "</script>"; 
-                                    } else {
-                                        echo "人數更新 Error"."<br>"; } 
-
-                                } else {
-                                    echo "DELETE Error"."<br>";
-                                    if($conn->query($sql_1)){} else { echo "人數更新 Error"."<br>"; }
-                                } 
-
-                            } */
                             
                               ?>
-                              <tr>
-                                <td>09487</td>
-                                <td>BBTIME</td>
-                                <td>週四10:00~12:00</td>
-                                <td>必</td>
-                                <td>2</td>
-                                <td><form action="opt_out.php"><button type="submit" class="btn btn-success btn-sm" id="searchBtn">加選</button></form></td>
-                              </tr>
-                            </tbody>
+                              
                             
                         </table>
                         </div>
